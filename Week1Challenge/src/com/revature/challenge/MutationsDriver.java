@@ -22,19 +22,57 @@ public class MutationsDriver {
 		 * see if it is a valid mutation. if it is valid, increment the mutation
 		 * variable by one. at the end of all this return that variable
 		 */
+		
+		// checking if start sequence is the same as end sequence
 		if(start.equals(end)) return 0;
 		
-		int mutations = 0; // the variable to return
+		// checking if the end sequence exists in the bank
+		boolean exists = false;
+		for(String str : bank) {
+			if(end.equals(str)) {
+				exists = true;
+			}
+		}
+		if (!exists) return -1;
 		
+		// checking number of mutations
+		int mutations = 0; // the variable to return
 		for(int i = 0; i < start.length(); i++) { // looping through the start sequence
 			if(start.charAt(i) != end.charAt(i)) { // checking for any mutations
+				mutations++;
+			}
+		}
+		return mutations;
+		
+		/*
+		 * 
+		// checking number of mutations
+		int mutations = 0; // the variable to return
+		for(int i = 0; i < start.length(); i++) { // looping through the start sequence
+			char[] tempArr = start.toCharArray();
+			String tempStr = "";
+			if(start.charAt(i) != end.charAt(i)) { // checking for any mutations
+				tempArr[i] = end.charAt(i);
+				//System.out.println(tempArr);
+				for(int j = 0; j < tempArr.length; j++) {
+					tempStr = tempStr + tempArr[j];
+				}
+				System.out.println(tempStr);
 				for(String str : bank) { // looping through bank
-					if(start.charAt(i) == str.charAt(i)) // checking if the mutation is valid
-					mutations++; // incrementing the variable that will be returned
-					continue; // once the mutation is found then break out of the loop
+					if(tempStr == str) {
+						mutations++;
+					}
+					
+					 * checking if the mutations exists in the bank by character
+					if(start.charAt(i) == str.charAt(i)) { // checking if the mutation is valid
+						mutations++; // incrementing the variable that will be returned
+						// continue; // once the mutation is found then break out of the loop
+					}
+					
 				}
 			}
 		}
 		return mutations;
+		*/
 	}
 }
