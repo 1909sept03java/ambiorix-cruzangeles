@@ -16,7 +16,7 @@ public class MutationsDriver {
 		//String[] bank = {"AACCGGTA", "AACCGCTA", "AAACGGTA"};
 		String filepath = "src/com/revature/challenge/bank.txt";
 		String[] bank = read(filepath);
-		System.out.println("Minimum number of mutations needed: " + numMutations(start, end, bank));
+		System.out.println("Minimum number of mutations needed: " + numMutations3(start, end, bank));
 	}
 	
 	static int numMutations(String start, String end, String[] bank) {
@@ -66,22 +66,86 @@ public class MutationsDriver {
 		}
 		if (!exists) return -1;
 		
-		// checking number of mutations
-		int mutations = 0; // the variable to return
-		for(int i = 0; i < start.length(); i++) { // looping through the start sequence
-			char[] tempArr = start.toCharArray(); // creating a char array of start
+		// checking number of mutations with multiple mutations at a time
+		int mutations = 0;
+		char[] tempArr = start.toCharArray(); // creating a char array of start
+		for(int i = 0; i < start.length(); i++) {
 			if(start.charAt(i) != end.charAt(i)) { // checking for any mutations
-				tempArr[i] = end.charAt(i); // making the change to char array
+				tempArr[i] = end.charAt(i);
 				String tempStr = new String(tempArr); // turning it into a String
 				System.out.println(tempStr);
 				for(String str : bank) { // looping through bank
-					if(tempStr == str) {
+					if(tempStr.equals(str)) {
 						mutations++;
 					}
 				}
 			}
 		}
 		return mutations;
+	}
+	
+	static int numMutations3(String start, String end, String[] bank) {
+		
+		// checking input lengths
+		if(start.length() != 8 || end.length() != 8) return -2;
+		
+		// checking if start sequence is the same as end sequence
+		if(start.equals(end)) return 0;
+				
+		// checking if the end sequence exists in the bank
+		boolean exists = false;
+		for(String str : bank) {
+			if(end.equals(str)) {
+				exists = true;
+			}
+		}
+		if (!exists) return -1;
+		
+		/*
+		 * starting the mutations from left to right
+		 * one path at a time
+		 */
+		int mutations1 = 0;
+		char[] currStringArr = start.toCharArray();
+		for(int i = 0; i < start.length(); i++) {
+			if(currStringArr[i] != end.charAt(i)) {
+				currStringArr[i] = end.charAt(i);
+				String currString = new String(currStringArr);
+				for(String bankStr: bank) {
+					if(currString.equals(bankStr)) {
+						mutations1++;
+						break;
+					}
+				}
+			}
+		}
+		
+		/* 
+		 * starting mutations from right to left
+		 * one path at a time
+		 */
+		int mutations2 = 0;
+		currStringArr = start.toCharArray();
+		for(int i = start.length()-1; i >= 0; i--) {
+			if(currStringArr[i] != end.charAt(i)) {
+				currStringArr[i] = end.charAt(i);
+				String currString = new String(currStringArr);
+				for(String bankStr: bank) {
+					if(currString.equals(bankStr)) {
+						mutations2++;
+						break;
+					}
+				}
+			}
+		}
+		
+		/*
+		 * checking to see which path is finally made it to the end
+		 */
+		if(mutations1 - mutations2 <= 0) {
+			return mutations2;
+		}
+		return mutations1;
 	}
 	
 	static String[] read(String filepath) {
