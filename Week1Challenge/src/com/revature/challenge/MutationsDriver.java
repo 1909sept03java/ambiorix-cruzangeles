@@ -85,6 +85,10 @@ public class MutationsDriver {
 	}
 	
 	static int numMutations3(String start, String end, String[] bank) {
+		/*
+		 * checks 2 starting paths, from left to right
+		 * and from right to left
+		 */
 		
 		// checking input lengths
 		if(start.length() != 8 || end.length() != 8) return -2;
@@ -107,10 +111,11 @@ public class MutationsDriver {
 		 */
 		int mutations1 = 0;
 		char[] currStringArr = start.toCharArray();
+		String currString = new String(currStringArr);
 		for(int i = 0; i < start.length(); i++) {
 			if(currStringArr[i] != end.charAt(i)) {
 				currStringArr[i] = end.charAt(i);
-				String currString = new String(currStringArr);
+				currString = new String(currStringArr);
 				for(String bankStr: bank) {
 					if(currString.equals(bankStr)) {
 						mutations1++;
@@ -129,7 +134,7 @@ public class MutationsDriver {
 		for(int i = start.length()-1; i >= 0; i--) {
 			if(currStringArr[i] != end.charAt(i)) {
 				currStringArr[i] = end.charAt(i);
-				String currString = new String(currStringArr);
+				currString = new String(currStringArr);
 				for(String bankStr: bank) {
 					if(currString.equals(bankStr)) {
 						mutations2++;
@@ -140,7 +145,7 @@ public class MutationsDriver {
 		}
 		
 		/*
-		 * checking to see which path is finally made it to the end
+		 * checking to see which path finally made it to the end
 		 */
 		if(mutations1 - mutations2 <= 0) {
 			return mutations2;
