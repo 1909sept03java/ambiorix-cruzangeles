@@ -5,29 +5,99 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class MutationsDriver {
 
 	public static void main(String[] args) {
 		
-		// hard coded example to start with, later maybe text file for bank
+		// hard coded example to start with
 		String start = "AACCGGTT";
 		String end = "AAACGGTA";
-		//String[] bank = {"AACCGGTA", "AACCGCTA", "AAACGGTA"};
+		String[] bank = {"AACCGGTA", "AACCGCTA", "AAACGGTA"};
+		
+		// false = prints "Start string:" true = prints "End string:"
+		start = getInput(false);
+		end = getInput(true);
+		
+		// reading in the String[] bank from a file
 		String filepath = "src/com/revature/challenge/bank.txt";
-		String[] bank = read(filepath);
+		bank = read(filepath);
+		
+		// printing the minimum number of mutations
 		System.out.println("Minimum number of mutations needed: " + numMutations3(start, end, bank));
+		
+	}
+	
+	static String getInput(boolean b) {
+		
+		// using a scanner to get user input start and end;
+		Scanner scanner = new Scanner(System.in);
+		if(b) System.out.println("Start string:");
+		else System.out.println("End string:");
+		String temp = scanner.nextLine();
+		
+		// checking if input is valid
+		for(int i = 0; i < temp.length(); i++) {
+			if(!(temp.length()== 8) && !((temp.charAt(i) == 'A') || (temp.charAt(i) == 'C') || (temp.charAt(i) == 'G') || (temp.charAt(i) == 'T'))) {
+				System.out.println("Invalid- length must be 8 and contain only ACGT");
+				getInput(b);
+			}
+		}
+		
+		//closing scanner and returning
+		scanner.close();
+		return temp;
+		
+	}
+	
+	static String[] read(String filepath) {
+		
+		/*
+		 * uses given filepath to parse a .txt file and return a
+		 * String[] containing every line within the .txt file as a string
+		 * note: uses ArrayList of strings to dynamically add each new line
+		 */
+		
+		// AUTO-CLOSABLE
+		try(BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+			
+			// reading a line from the file and adding it to the ArrayList
+			String currString = null;
+			ArrayList<String> bank = new ArrayList<String>();
+			while((currString = br.readLine()) != null) {
+				bank.add(currString);
+			}
+			
+			// copying the contents of an ArrayList to a String[] and returning it
+			String[] arrStr = new String[bank.size()];
+			for(int i = 0; i < bank.size(); i++) {
+				arrStr[i] = bank.get(i);
+			}
+			return arrStr;
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		// if the code in try-catch doesn't work return the default bank
+		String[] bank = {"AACCGGTA", "AACCGCTA", "AAACGGTA"};
+		return bank;
+		
 	}
 	
 	static int numMutations(String start, String end, String[] bank) {
+		
 		/*
-		 * my idea behind this approach is to:
-		 * first: if the start sequence is the same as the end sequence, return 0
-		 * else loop through the start sequence and check it with the end sequence
-		 * character by character, if there is a character difference then we have
-		 * a mutation. if there is a mutation, loop through the bank and check to
-		 * see if it is a valid mutation. if it is valid, increment the mutation
-		 * variable by one. at the end of all this return that variable
+		 * my idea behind this approach is to-
+		 * 1) if the start sequence is the same as the end sequence, return 0
+		 * 2) if the end sequence is not in the bank, return -1
+		 * 3) checking number of mutations by looping through start and end,
+		 * incrementing the mutations variable every time a character in the
+		 * sequence is different.
 		 */
 		
 		// checking if start sequence is the same as end sequence
@@ -50,9 +120,17 @@ public class MutationsDriver {
 			}
 		}
 		return mutations;
+		
 	}
 	
 	static int numMutations2(String start, String end, String[] bank) {
+		
+		/*
+		 * my idea behind this approach is to-
+		 * 1) if the start sequence is the same as the end sequence, return 0
+		 * 2) if the end sequence is not in the bank, return -1
+		 * 3) checking number of mutations by starting on a path, left to right
+		 */
 		
 		// checking if start sequence is the same as end sequence
 		if(start.equals(end)) return 0;
@@ -66,7 +144,7 @@ public class MutationsDriver {
 		}
 		if (!exists) return -1;
 		
-		// checking number of mutations with multiple mutations at a time
+		// checking number of mutations by creating a mutation path from left to right
 		int mutations = 0;
 		char[] tempArr = start.toCharArray(); // creating a char array of start
 		for(int i = 0; i < start.length(); i++) {
@@ -151,32 +229,6 @@ public class MutationsDriver {
 			return mutations2;
 		}
 		return mutations1;
-	}
-	
-	static String[] read(String filepath) {
-		/*
-		 * function that opens a .txt file and extracts the contents
-		 * of it line by line, putting it into a String array
-		 * returns that string array
-		 */
-		try(BufferedReader br = new BufferedReader(new FileReader(filepath))) {
-			String currString = null;
-			ArrayList<String> bank = new ArrayList<String>();
-			while((currString = br.readLine()) != null) {
-				bank.add(currString);
-			}
-			String[] arrStr = new String[bank.size()];
-			for(int i = 0; i < bank.size(); i++) {
-				arrStr[i] = bank.get(i);
-			}
-			return arrStr;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		String[] arrStr = new String[0];
-		return arrStr;
 	}
 		
 }
