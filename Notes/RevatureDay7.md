@@ -51,3 +51,59 @@ mentor will allow it or not
 
 project3
 working on the mentors project (HUGE)
+
+## Databases
+
+Plae to store presistent data
+relational databases- has keys
+    data is organized into tables
+    has rows and cols
+    table has a primary key -> unique identifier for a record
+    the primary key can not be null
+    tables are related with foreign keys
+    foreign keys -> primary key of another table
+    foreign keys don't need to be unique and they can be null
+
+Employees Table
+ID, F_NAME, L_NAME, DEPT_ID
+52, GANDALF, GREY, 3
+53, SARUMAN, WHITE, 3
+174, FRODO, BAGGINS, 27
+
+Department Table
+ID, NAME
+3, MAGIC
+27, QUESTING
+
+the primary key of Employees is ID
+the primary key of Department is also ID
+the foreign key is DEPT_ID, can be null, doesn't have to be unique
+
+relational databases includes:
+oracle
+microsoft sql server
+mysql
+sql lite
+postgresql
+
+non relational databases
+data is organized into json (typically) documens
+mongoDB, dynamoDB
+
+Entity Relational Diagram
+
+Multiplicty Relationships
+Credentials - User
+1-1 assignment
+
+1 to many
+many to 1
+exmployee to department
+
+many to many
+student to courses
+
+many to many requires a junction/transition table
+uses a composite key (cumbersome)
+every key in a junction table is unique
+TABLE1_TABLE2 is the name design

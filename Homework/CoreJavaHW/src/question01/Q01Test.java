@@ -32,15 +32,9 @@ class Q01Test {
 	@Test
 	void test() {
 		int[] myIntArray = new int[]{3, 2, 1};
+		int[] expected = new int[] {1, 2, 3};
 		int[] myIntArraySorted = Q01.bubbleSort(myIntArray);
-		assertArrayEquals(myIntArray, myIntArraySorted);
-		/*
-		 * 
-		int[] myIntArraySorted = new int[]{1, 2, 3};
-		int[] myIntArraySortedBubble = Q01.bubbleSort(myIntArray);
-		for(int i = 0; i < myIntArray.length; i++) System.out.println(myIntArray[i] +" "+ myIntArraySortedBubble[i]);
-		assertEquals(myIntArraySorted, myIntArraySortedBubble);
-		 */
+		assertArrayEquals(expected, myIntArraySorted);
 	}
 
 }
