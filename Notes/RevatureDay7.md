@@ -107,3 +107,11 @@ many to many requires a junction/transition table
 uses a composite key (cumbersome)
 every key in a junction table is unique
 TABLE1_TABLE2 is the name design
+
+STUDENT ORGANIZATIONS
+MEMBERS,    OFFICERS,   NAME,   MEETING TIME + LOCATION,    FACULTY ADVISOR
+
+## Database Normalization
+
+Arranging information into tables to reduce redundancy and enforce integrety
+Avoid data manipulation issues through use of well placed foreign keys

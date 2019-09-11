@@ -8,12 +8,18 @@ public class Q03 {
 	
 	public static void main(String[] args) {
 		String str = "Hello my name is rex.";
-		reverse(str);
+		System.out.println(reverse(str));
 	}
 	
-	static void reverse(String s) {
-		for(int i = s.length()-1; i >= 0; i--) {
-			System.out.print(s.charAt(i));
+	static String reverse(String s) {
+		char[] charArr = s.toCharArray();
+		int j = charArr.length-1;
+		for(int i = 0; i < charArr.length/2; i++) {
+			char temp = charArr[i];
+			charArr[i] = charArr[j];
+			charArr[j] = temp;
+			j--;
 		}
+		return new String(charArr);
 	}
 }
