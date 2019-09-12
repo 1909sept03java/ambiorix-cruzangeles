@@ -1,5 +1,9 @@
 package question18;
 
+/* NOT COMPLETED NOT COMPLETED NOT COMPLETED */
+/* NOT COMPLETED NOT COMPLETED NOT COMPLETED */
+/* NOT COMPLETED NOT COMPLETED NOT COMPLETED */
+
 public class Q18Implemented extends Q18 {
 
 	@Override

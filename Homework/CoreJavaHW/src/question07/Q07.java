@@ -5,6 +5,9 @@ import java.util.Comparator;
 /*
  * Q7. Sort two employees based on their name, department, and age using the Comparator interface.
  */
+
+/* NOT COMPLETED NOT COMPLETED NOT COMPLETED */
+
 public class Q07 {
 
 }

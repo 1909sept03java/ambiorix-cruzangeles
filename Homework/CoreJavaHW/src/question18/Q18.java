@@ -9,6 +9,8 @@ package question18;
  * Create an appropriate class having a main method to test the above setup.
  */
 
+/* NOT COMPLETED NOT COMPLETED NOT COMPLETED */
+
 public abstract class Q18 {
 
 	public abstract boolean isUppercase(String str);

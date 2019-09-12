@@ -19,9 +19,11 @@ public class Q17 {
 		System.out.println("Time: ");
 		String time = scanner.nextLine();
 		System.out.println(interest(Integer.parseInt(principal), Integer.parseInt(rate), Integer.parseInt(time)));
+		scanner.close();
 	}
 	
 	static int interest(int principal, int rate, int time) {
 		return principal*rate*time;
 	}
+	
 }

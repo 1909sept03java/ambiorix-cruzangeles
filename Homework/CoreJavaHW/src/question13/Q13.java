@@ -19,4 +19,5 @@ public class Q13 {
 			if(i == 3) System.out.println("0 1 0 1");
 		}
 	}
+	
 }

@@ -6,48 +6,41 @@ import java.util.Iterator;
 /*
  * Q8. Write a program that stores the following strings in an ArrayList
  * and saves all the palindromes in another ArrayList. 
- * “karan”, “madam”, ”tom”, “civic”, “radar”, “sexes”, “jimmy”, “kayak”, “john”,  “refer”, “billy”, “did”
+ * “karan”, “madam”, ”tom”, “civic”, “radar”, “sexes”, “jimmy”, “kayak”, 
+ * “john”,  “refer”, “billy”, “did”
  */
 
 public class Q08 {
 
 	public static void main(String[] args) {
-		String[] str = {"karan", "madam", "tom", "civic", "radar", "sexes", "jimmy", "kayak", "john", "refer", "billy", "did"};
-		ArrayList<String> arrList = new ArrayList<String>();
-		for(String s : str) {
-			arrList.add(s);
-		}
-		Iterator<String> arrListIterator = arrList.iterator();
-		while(arrListIterator.hasNext()) {
-			System.out.print(arrListIterator.next() + " ");
-		}
-		System.out.println();
-		ArrayList<String> arrList2 = new ArrayList<String>();
-		arrList2 = palindrome(arrList);
-		Iterator<String> arrListIterator2 = arrList2.iterator();
-		while(arrListIterator2.hasNext()) {
-			System.out.print(arrListIterator2.next() + " ");
-		}
-	}
-
-	static ArrayList<String> palindrome(ArrayList<String> arrList) {
-		Iterator<String> arrListIterator = arrList.iterator();
-		ArrayList<String> arrListTemp = new ArrayList<String>();
-		String s = "";
-		while(arrListIterator.hasNext()) {
-			s = arrListIterator.next().toString();
-			if(s.equals(reverse(s))) {
-				arrListTemp.add(s);
+		
+		String[] words = {"karan", "madam", "tom", "civic", "radar", "sexes", "jimmy", "kayak", "john", "refer", "billy", "did"};
+		
+		ArrayList<String> arrWords = new ArrayList<String>();
+		ArrayList<String> arrWordsPalindromes = new ArrayList<String>();
+		
+		for(String word : words) {
+			
+			arrWords.add(word);
+			
+			String wordReversed = reverse(word);
+			
+			if(word.equals(wordReversed)) {
+				arrWordsPalindromes.add(wordReversed);
 			}
+			
 		}
-		return arrListTemp;
+		
+		for(int i = 0; i < arrWords.size(); i++) System.out.print(arrWords.get(i) + " ");
+		System.out.println();
+		for(int i = 0; i < arrWordsPalindromes.size(); i++) System.out.print(arrWordsPalindromes.get(i) + " ");
+		
 	}
 	
-	static String reverse(String s) {
-		String temp = "";
-		for(int i = s.length()-1; i >= 0; i--) {
-			temp = temp + s.charAt(i);
-		}
-		return temp;
+	static String reverse(String word) {
+		StringBuilder strBuilder = new StringBuilder(word);
+		String wordReversed = new String(strBuilder.reverse());
+		return wordReversed;
 	}
+
 }

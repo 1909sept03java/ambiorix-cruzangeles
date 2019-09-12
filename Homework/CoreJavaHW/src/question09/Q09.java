@@ -17,7 +17,7 @@ public class Q09 {
 		int temp = 0;
 		while(arrListIterator.hasNext()) {
 			temp = arrListIterator.next();
-			if(isPrime(temp)) System.out.println(temp);
+			if(isPrime(temp)) System.out.print(temp + ", ");
 		}
 	}
 	
