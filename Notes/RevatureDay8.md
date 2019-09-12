@@ -26,6 +26,18 @@ SELECT: GOING THROUGH THE DATA
 
 DQL: Data Query Language - Going through the data
 SELECT: GOING THROUGH THE DATA
+SELECT [COLUMN LIST]    // required
+FROM [TABLE LIST]       // required
+WHERE [CONDITION]
+GROUP BY [COLUMN LIST]  // AGGREGATION
+HAVING [CONDITION]      // AGGREGATION
+ORDER BY [COLUMN LIST]  // DISPLAY ORDER
+
+GROUP BY doesn't need having, HAVING needs group by.
+SELECT DEPT_ID FROM EMPLOYEE GROUP BY DEPT_ID
+returns  distinct values of dept_id
+HAVING allows filtering of results
+GROUP BY VS ORDER BY is a common interview question
 
 DCL: Data Control Language - Accessing the structures/tables/entities/data
 GRANT: GRANT ACCESS
@@ -35,6 +47,12 @@ TCL: Transaction Control Language - Saving changes to data
 COMMIT: SAVING
 ROLLBACK: REVERTING BACK
 SAVEPOINT: SAVEPOINT TO ROLLBACK TO
+
+JOINS ARE USED TO COMBINE INFORMATION FROM MULTIPLE TABLES on a particular column
+INNER JOIN returns all non null rows and joins two tables with FK and PK
+FULL JOIN is all of the records
+LEFT OUTER JOIN shows everything from left to right including nulls
+RIGHT OUTER JOIN shows everything from right to left and may not include nulls included in left table
 
 ## Some PL/SQL Notes
 
@@ -95,3 +113,8 @@ CREATE TABLE BEAR_BEEHIVE (
 
 --CONSTRAINT: RULE PLACED ON THE CONTENTS OF A TABLE, LIMITING WHAT MAY BE INSERTED
 --TYPES OF CONSTRAINTS: CHECK (INCLUDES NOT NULL), UNIQUE, PRIMARY KEY, FOREGIN KEY
+
+## SQL LAB
+
+due 5 pm monday sept 16th
+setting up a test data base with a bunch of information from
