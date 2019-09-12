@@ -115,3 +115,31 @@ MEMBERS,    OFFICERS,   NAME,   MEETING TIME + LOCATION,    FACULTY ADVISOR
 
 Arranging information into tables to reduce redundancy and enforce integrety
 Avoid data manipulation issues through use of well placed foreign keys
+
+"levels" of normalization
+normal forms of a database
+1-6
+3NF = is typically considered sufficiently normalized
+
+SalesStaff ( NOT NORMALIZED )
+EMP_ID | EMP_NAME | OFFICE    | OFF_NUM | CUST_1 | CUST_2 | CUST_3
+42       BOB        Chicago    111-1111   REV      APP
+79       SUE        Brooklyn   555-5555   APP
+151      FRED       Brooklyn   555-5555   BOW               REV
+
+1NF: INFORMATION is stored in relational tables with atomic values
+in each column and no repeated groups of columns
+
+2NF: 1NF + all columns depend on PK, (no partial dependencies)
+
+3NF: 2NF + nothing is transitively dependent on the primary key
+example: AGE and BIRTHDAY
+
+multiplicity relationships vs normal forms (don't confuse them)
+
+RDBMS (relational database management service)
+
+CREATE DATABASE -> STANDARD -> ORACLE -> ORACLE STADARD EDITION TWO -> DEV/TEST
+
+admin
+CoDe

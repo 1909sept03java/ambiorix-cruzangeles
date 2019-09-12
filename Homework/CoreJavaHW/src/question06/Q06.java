@@ -12,7 +12,7 @@ public class Q06 {
 	}
 	
 	static boolean isEven(int num) {
-		if((num / 2) * 2 == num) return true;
+		if(num%2==0) return true;
 		else return false;
 	}
 }
