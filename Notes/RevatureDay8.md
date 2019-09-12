@@ -11,5 +11,27 @@ Sublanguages are groups of commands organized by a purpose
 
 ## Sublanguages
 
-DDL: Data Definition Language - structure
-KEYWORDS: CREATE, ALTER, TRUNCATE, DROP
+DDL: Data Definition Language - Structure Changing
+KEYWORDS-
+CREATE: CREATES THE TABLE
+ALTER: CHANGE THE STRUCTURE OF THE TABLE
+TRUNCATE: REMOVES ALL DATA FROM THE TABLE, TABLE REMAINS
+DROP: REMOVES THE TABLE
+
+DML: Data Manipulation Language - Data Changing
+INSERT: INSERTING A ROW
+UPDATE: UPDATING A ROW
+DELETE: DELETING A ROW
+SELECT: GOING THROUGH THE DATA
+
+DQL: Data Query Language - Going through the data
+SELECT: GOING THROUGH THE DATA
+
+DCL: Data Control Language - Accessing the structures/tables/entities/data
+GRANT: GRANT ACCESS
+REVOKE: TAKE AWAY ACCESS
+
+TCL: Transaction Control Language - Saving changes to data
+COMMIT: SAVING
+ROLLBACK: REVERTING BACK
+SAVEPOINT: SAVEPOINT TO ROLLBACK TO
