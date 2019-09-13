@@ -66,7 +66,7 @@ VALUES (61, 'Morty', 'Sanchez', 'IDGAF', '214 Earth', 'Quahog', 'NY', 'United St
 -- SELECT * FROM CUSTOMER;
 
 UPDATE CUSTOMER
-SET FIRSTNAME = 'Robert', LASTNAME = 'Mitchell'
+SET FIRSTNAME = 'Robert', LASTNAME = 'Walter'
 WHERE CUSTOMERID = 32; -- Aaron Mitchell's CUSTOMERID
 
 -- SELECT * FROM ARTIST;
@@ -86,13 +86,21 @@ WHERE BILLINGADDRESS LIKE 'T%';
 -- Task – Select all employees hired between 1st of June 2003 and 1st of March 2004
 
 SELECT * FROM INVOICE
-WHERE TOTAL >= 15 AND TOTAL <= 50;
+WHERE TOTAL BETWEEN 15 AND 50;
 
 SELECT * FROM EMPLOYEE
-WHERE HIREDATE >= TO_DATE('2003-06-01', 'yyyy-mm-dd') AND HIREDATE <= TO_DATE('2004-03-01', 'yyyy-mm-dd');
+WHERE HIREDATE BETWEEN '01-JUN-03' and '01-MAR-04';
 
 -- 2.7 DELETE
 -- Task – Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).
+
+-- right click on customer table in connections tab, disable constraints, delete customer Robert Walter, enable constraints
+-- ERROR integrity constraint (CHINOOK.FK_INVOICECUSTOMERID) violated - child record found
+
+SELECT * FROM CUSTOMER;
+
+DELETE FROM CUSTOMER
+WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter';
 
 -- SQL Functions
 -- In this section you will be using the Oracle system functions, as well as your own functions, to perform various actions against the database
