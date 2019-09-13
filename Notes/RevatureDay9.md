@@ -40,3 +40,11 @@ saved blocks of code
 take 0 or many in params
 return 0 or many out programs
 full DML + TCL
+
+## Transactions
+
+unit of work done on a database
+Atomicity - All or nothing. The entire transaction executes or none of it does.
+C
+I
+D
