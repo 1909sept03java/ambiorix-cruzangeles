@@ -64,6 +64,16 @@ Connection - Represents a connection to the database
 
 OTHER INTERFACES
 Statement
+-takes a string and executes it as a sql command
+-be very careful: sql injection
 PreparedStatement
+-extends Statement, executes a precompiled sql statement
+-efficient for frequent queries, repeated queries, etc
+-use placeholders for variables- safer
+
+PreparedStatement pstmnt = conn.prepareStatement("SELECT * FROM BEAR WHERE NAME = ?");
+pstmnt.setString(1, "Bob");
+
 CallableStatement
+
 ResultSet

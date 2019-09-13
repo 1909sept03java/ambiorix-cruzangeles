@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class MutationsDriver {
@@ -17,9 +16,9 @@ public class MutationsDriver {
 		String end = "AAACGGTA";
 		String[] bank = {"AACCGGTA", "AACCGCTA", "AAACGGTA"};
 		
-		// false = prints "Start string:" true = prints "End string:"
-		start = getInput(false);
-		end = getInput(true);
+		// true = prints "Start string:", false = prints "End string:"
+		start = getInput(true);
+		end = getInput(false);
 		
 		// reading in the String[] bank from a file
 		String filepath = "src/com/revature/challenge/bank.txt";
@@ -34,15 +33,28 @@ public class MutationsDriver {
 		
 		// using a scanner to get user input start and end;
 		Scanner scanner = new Scanner(System.in);
-		if(b) System.out.println("Start string:");
-		else System.out.println("End string:");
+		if(b) {
+			System.out.println("Start string:");
+		}
+		else {
+			System.out.println("End string:");
+		}
 		String temp = scanner.nextLine();
 		
 		// checking if input is valid
 		for(int i = 0; i < temp.length(); i++) {
 			if(!(temp.length()== 8) && !((temp.charAt(i) == 'A') || (temp.charAt(i) == 'C') || (temp.charAt(i) == 'G') || (temp.charAt(i) == 'T'))) {
 				System.out.println("Invalid- length must be 8 and contain only ACGT");
-				getInput(b);
+				if(b) {
+					System.out.println("Using: AACCGGTT");
+					scanner.close();
+					return "AACCGGTT";
+				}
+				else {
+					System.out.println("Using: AAACGGTA");
+					scanner.close();
+					return "AAACGGTA";
+				}
 			}
 		}
 		
@@ -223,7 +235,7 @@ public class MutationsDriver {
 		}
 		
 		/*
-		 * checking to see which path finally made it to the end
+		 * checking to see which path is bigger
 		 */
 		if(mutations1 - mutations2 <= 0) {
 			return mutations2;
