@@ -1,0 +1,23 @@
+SELECT *
+FROM (
+ SELECT WEIGHT,
+        row_number() OVER (ORDER BY WEIGHT DESC) AS row_num
+ FROM BEAR
+) t
+WHERE row_num = 2;
+
+CREATE OR REPLACE FUNCTION SECOND_HEAVY_BEAR
+RETURN SYS_REFCURSOR
+IS
+S SYS_REFCURSOR;
+BEGIN
+    OPEN S FOR
+    SELECT BEAR
+    FROM (
+    SELECT WEIGHT,
+       row_number() over (ORDER BY WEIGHT DESC) as row_num
+    FROM BEAR
+    ) t
+    WHERE row_num = 2;
+    RETURN S;
+END;

@@ -45,6 +45,25 @@ full DML + TCL
 
 unit of work done on a database
 Atomicity - All or nothing. The entire transaction executes or none of it does.
-C
-I
-D
+Consistency - DB state is valid after the transaction completes.
+Isolation - Concurrent transactions execute as if they were sequential
+Durability - All commits are final. When you commit, you're not rolling back.
+
+## JDBC - Java Database Connectivity
+
+java.sql package
+SQLException -> main throwable type
+throwable being the main interface
+it is a checked exception, so there will need to be a try-catch-finally block
+
+interfaces of JDBC
+Connection - Represents a connection to the database
+-allows us to executre sql statements and receive result sets
+-maintains information about the database itself
+-setAutoCommit() (TRUE by default)
+
+OTHER INTERFACES
+Statement
+PreparedStatement
+CallableStatement
+ResultSet
