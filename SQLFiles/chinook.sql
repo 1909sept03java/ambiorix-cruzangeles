@@ -61,14 +61,35 @@ VALUES (61, 'Morty', 'Sanchez', 'IDGAF', '214 Earth', 'Quahog', 'NY', 'United St
 
 -- 2.4 UPDATE
 -- Task – Update Aaron Mitchell in Customer table to Robert Walter
--- Task – Update name of artist in the Artist table “Creedence Clearwater Revival” to “CCR”	
+-- Task – Update name of artist in the Artist table “Creedence Clearwater Revival” to “CCR”
 
---2.5 LIKE
+-- SELECT * FROM CUSTOMER;
+
+UPDATE CUSTOMER
+SET FIRSTNAME = 'Robert', LASTNAME = 'Mitchell'
+WHERE CUSTOMERID = 32; -- Aaron Mitchell's CUSTOMERID
+
+-- SELECT * FROM ARTIST;
+
+UPDATE ARTIST
+SET NAME = 'CCR'
+WHERE NAME = 'Creedence Clearwater Revival';
+
+-- 2.5 LIKE
 -- Task – Select all invoices with a billing address like “T%” 
+
+SELECT * FROM INVOICE
+WHERE BILLINGADDRESS LIKE 'T%';
 
 -- 2.6 BETWEEN
 -- Task – Select all invoices that have a total between 15 and 50
 -- Task – Select all employees hired between 1st of June 2003 and 1st of March 2004
+
+SELECT * FROM INVOICE
+WHERE TOTAL >= 15 AND TOTAL <= 50;
+
+SELECT * FROM EMPLOYEE
+WHERE HIREDATE >= TO_DATE('2003-06-01', 'yyyy-mm-dd') AND HIREDATE <= TO_DATE('2004-03-01', 'yyyy-mm-dd');
 
 -- 2.7 DELETE
 -- Task – Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).

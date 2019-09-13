@@ -28,3 +28,15 @@ ERROR HANDLING
 views
 virtual table
 Result set of a saved select statement
+
+functions
+saved blocks of code
+take 0 or many params
+return 1 value
+DQL ONLY
+
+stored procedures
+saved blocks of code
+take 0 or many in params
+return 0 or many out programs
+full DML + TCL
