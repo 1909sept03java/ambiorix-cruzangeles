@@ -248,37 +248,158 @@ END;
 /
 EXECUTE UPDATE_EMPLOYEE_INFO(10, 'Cruz', 'Rex2', '230 Imaginary Road', 'Yonkers', 'United States', '10701', '+1 (999) 999-9997', '+1 (999) 999-9996', 'rex@chinookcorp.com');
 
-
 -- Task – Create a stored procedure that returns the managers of an employee.
 
+CREATE OR REPLACE PROCEDURE RETURN_MANAGER(
+    E_EMPLOYEEID IN EMPLOYEE.EMPLOYEEID%TYPE,
+    E_MANAGERID OUT EMPLOYEE.REPORTSTO%TYPE)
+IS
+BEGIN
+    SELECT REPORTSTO INTO E_MANAGERID
+    FROM EMPLOYEE WHERE EMPLOYEEID = E_EMPLOYEEID;
+END;
+/
+SET SERVEROUTPUT ON
+DECLARE
+    E_EMPLOYEEID EMPLOYEE.EMPLOYEEID%TYPE;
+    E_MANAGERID EMPLOYEE.REPORTSTO%TYPE;
+BEGIN
+    RETURN_MANAGER(10, E_MANAGERID);
+    DBMS_OUTPUT.PUT_LINE(E_MANAGERID);
+END;
+/
+
 -- 4.3 Stored Procedure Output Parameters
+
 -- Task – Create a stored procedure that returns the name and company of a customer.
+
+CREATE OR REPLACE PROCEDURE GET_NAME_COMPANY(
+    CUSTOMER_ID IN CUSTOMER.CUSTOMERID%TYPE,
+    C_FN OUT CUSTOMER.FIRSTNAME%TYPE,
+    C_LN OUT CUSTOMER.LASTNAME%TYPE,
+    C_CO OUT CUSTOMER.COMPANY%TYPE)
+IS
+BEGIN
+    SELECT FIRSTNAME, LASTNAME, COMPANY
+    INTO C_FN, C_LN, C_CO
+    FROM CUSTOMER WHERE CUSTOMERID = CUSTOMER_ID;
+END;
+/
+SET SERVEROUTPUT ON
+DECLARE
+    C_FN CUSTOMER.FIRSTNAME%TYPE;
+    C_LN CUSTOMER.LASTNAME%TYPE;
+    C_CO CUSTOMER.COMPANY%TYPE;
+BEGIN
+    GET_NAME_COMPANY(10, C_FN, C_LN, C_CO);
+    DBMS_OUTPUT.PUT_LINE(C_FN || ' ' || C_LN || ' - ' || C_CO);
+END;
+/
 
 -- 5.0 Transactions
 -- In this section you will be working with transactions. Transactions are usually nested within a stored procedure.
+
 -- Task – Create a transaction that given a invoiceId will delete that invoice (There may be constraints that rely on this, find out how to resolve them).
+ 
+ CREATE OR REPLACE PROCEDURE DELETE_INVOICE(INVOICE_ID IN INVOICE.INVOICEID%TYPE)
+IS
+BEGIN
+    -- DELETE INVOICE FROM INVOICELINE
+    DELETE FROM INVOICELINE
+    WHERE INVOICEID = INVOICE_ID;
+    
+    -- DELETE INVOICE
+    DELETE FROM INVOICE
+    WHERE INVOICEID = INVOICE_ID;
+END;
+/
+EXECUTE DELETE_INVOICE(216);
+
  
 -- 6.0 Triggers
 -- In this section you will create various kinds of triggers that work when certain DML statements are executed on a table.
+
 -- 6.1 AFTER/FOR
+
 -- Task - Create an after insert trigger on the employee table fired after a new record is inserted into the table.
+
+CREATE OR REPLACE TRIGGER AFTER_CREATE_EMPLOYEE
+AFTER INSERT ON EMPLOYEE FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(:NEW.FIRSTNAME || ' ' || :NEW.LASTNAME || ' created');
+END;
+/
+SET SERVEROUTPUT ON
+INSERT INTO EMPLOYEE
+VALUES(11, 'Smith', 'John', 'IT Staff', 6, '08-MAR-87', '20-AUG-04', 
+'284 Main St', 'Edmonton', 'AB', 'Canada', 'T5K 2N1', '+1 (780) 382-3842', 
+'+1 (780) 382-3892', 'smithj@chinookcorp.com');
+
 -- Task – Create an after update trigger on the album table that fires after a row is inserted in the table
+
+CREATE OR REPLACE TRIGGER AFTER_UPDATE_ALBUM
+AFTER UPDATE OR INSERT ON ALBUM FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(:NEW.TITLE || ' created');
+END;
+/
+SET SERVEROUTPUT ON
+INSERT INTO ALBUM
+VALUES(348, 'Something', 275);
+
 -- Task – Create an after delete trigger on the customer table that fires after a row is deleted from the table.
+
+CREATE OR REPLACE TRIGGER AFTER_DELETE_CUSTOMER
+AFTER DELETE ON CUSTOMER FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE(:OLD.FIRSTNAME || ' ' || :OLD.LASTNAME || ' deleted');
+END;
+/
+SET SERVEROUTPUT ON
+DELETE FROM CUSTOMER WHERE CUSTOMERID = 61;
 
 -- 7.0 JOINS
 -- In this section you will be working with combining various tables through the use of joins. You will work with outer, inner, right, left, cross, and self joins.
 
 -- 7.1 INNER
+
 -- Task – Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
 
+SELECT FIRSTNAME, LASTNAME, INVOICEID FROM CUSTOMER C
+JOIN INVOICE I ON C.CUSTOMERID = I.CUSTOMERID
+ORDER BY C.LASTNAME;
+
 -- 7.2 OUTER
+
 -- Task – Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.
 
+SELECT FIRSTNAME, LASTNAME, INVOICEID, TOTAL FROM CUSTOMER C
+FULL JOIN INVOICE I ON C.CUSTOMERID = I.CUSTOMERID
+ORDER BY C.LASTNAME;
+
 -- 7.3 RIGHT
+
 -- Task – Create a right join that joins album and artist specifying artist name and title.
 
+SELECT NAME, TITLE FROM ALBUM AL
+RIGHT JOIN ARTIST AR ON AL.ARTISTID = AR.ARTISTID
+ORDER BY NAME;
+
 -- 7.4 CROSS
+
 -- Task – Create a cross join that joins album and artist and sorts by artist name in ascending order.
 
+SELECT NAME, TITLE FROM ALBUM AL
+CROSS JOIN ARTIST AR
+ORDER BY NAME ASC;
+
 -- 7.5 SELF
+
 -- Task – Perform a self-join on the employee table, joining on the reportsto column.
+
+SELECT
+    (E.FIRSTNAME || ' ' || E.LASTNAME) EMPLOYEE,
+    (M.FIRSTNAME || ' ' || M.LASTNAME) MANAGER
+FROM EMPLOYEE E
+LEFT JOIN EMPLOYEE M ON E.REPORTSTO = M.EMPLOYEEID
+ORDER BY MANAGER;
