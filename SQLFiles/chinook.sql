@@ -107,10 +107,30 @@ WHERE FIRSTNAME = 'Robert' AND LASTNAME = 'Walter';
 
 -- 3.1 System Defined Functions
 -- Task – Create a function that returns the current time.
+
+CREATE OR REPLACE FUNCTION GET_TIME
+RETURN CURRENT_TIME
+AS
+BEGIN
+    RETURN SYSDATE;
+END;
+
 -- Task – create a function that returns the length of name in MEDIATYPE table
 
+CREATE OR REPLACE FUNCTION GET_MEDIATYPE_NAME_LENGTH(M_ID IN)
+RETURN INTEGER 
+AS
+BEGIN
+    RETURN (SELECT LENGTH(NAME)AS NAME_LENGTH FROM MEDIATYPE WHERE MEDIATYPEID = M_ID);
+END;
+
+
 -- 3.2 System Defined Aggregate Functions
+
 -- Task – Create a function that returns the average total of all invoices 
+
+
+
 -- Task – Create a function that returns the most expensive track
 
 -- 3.3 User Defined Scalar Functions

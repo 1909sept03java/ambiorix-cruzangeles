@@ -11,7 +11,7 @@ public class CaveDAOImplement implements CaveDAO {
 	public List<Cave> getCaves() {
 		List<Cave> cl = new ArrayList<Cave>();
 		// try-with-resources... resources included in the try args will be closed
-		// works with all AutoClosable resorces
+		// works with all AutoClosable resources
 		return cl;
 	}
 
