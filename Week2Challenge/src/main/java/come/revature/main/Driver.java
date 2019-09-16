@@ -36,10 +36,15 @@ public class Driver {
 			String empFirstname = "";
 			String empSalary = "";
 			String empDeptID = "";
+			float avgSal = 0.0f;
+			String temp = "1";
 			while(rs.next()) {
 				empFirstname = rs.getString("EMP_FIRSTNAME");
 				empSalary = rs.getString("SALARY");
 				empDeptID = rs.getString("DEPARTMENT_ID");
+				if (empDeptID.equals(temp)) {
+					System.out.println("Department 1");
+				}
 				System.out.println(empFirstname + " : " + empSalary + " : " + empDeptID);
 			}
 			
