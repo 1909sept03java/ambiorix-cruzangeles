@@ -13,12 +13,12 @@ public class MutationsDriver {
 		
 		// hard coded example to start with
 		String start = "AACCGGTT";
-		String end = "AAACGGTA";
+		String end = "AAACGGTT";
 		String[] bank = {"AACCGGTA", "AACCGCTA", "AAACGGTA"};
 		
 		// true = prints "Start string:", false = prints "End string:"
 		start = getInput(true);
-		end = getInput(false);
+		// end = getInput(false);
 		
 		// reading in the String[] bank from a file
 		String filepath = "src/com/revature/challenge/bank.txt";
@@ -39,27 +39,27 @@ public class MutationsDriver {
 		else {
 			System.out.println("End string:");
 		}
+		
 		String temp = scanner.nextLine();
+		scanner.close();
 		
 		// checking if input is valid
 		for(int i = 0; i < temp.length(); i++) {
 			if(!(temp.length()== 8) && !((temp.charAt(i) == 'A') || (temp.charAt(i) == 'C') || (temp.charAt(i) == 'G') || (temp.charAt(i) == 'T'))) {
-				System.out.println("Invalid- length must be 8 and contain only ACGT");
+				System.out.println("Invalid- length must be 8 or contain only ACGT");
 				if(b) {
 					System.out.println("Using: AACCGGTT");
-					scanner.close();
-					return "AACCGGTT";
+					temp = "AACCGGTT";
+					return temp;
 				}
 				else {
 					System.out.println("Using: AAACGGTA");
-					scanner.close();
-					return "AAACGGTA";
+					temp = "AAACGGTA";
+					return temp;
 				}
 			}
 		}
 		
-		//closing scanner and returning
-		scanner.close();
 		return temp;
 		
 	}
