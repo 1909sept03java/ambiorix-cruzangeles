@@ -11,3 +11,10 @@ Resource or whatever,
 
 can be an http file
 can be a data formatted xml, json, plain text
+
+the client side is known as the
+"user agent"
+-doesn't have to be a browser
+any piece of web-aware software which can make a request and do something with the response
+
+HTTP: Hyper Text Transfer Protocol
