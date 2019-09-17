@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>Forms</title>
-        <meta name="viewport" content="width-device-width, initial-scale-1"/>
-        <link rel="stylesheet" href="styles.css" type="text/css"/>
-    </head>
-    <body>
-        <form action="https://www.google.com/search" method="GET"></form>
-    </body>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Forms</title>
+    <meta name="viewport" content="width-device-width, initial-scale-1" />
+    <link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+    <form action="https://www.google.com/search" method="GET">
+        <input type="text" name="q" /><br>
+        <input type="submit" value="let me google that for you" />
+    </form>
+
+    <form action="" method="POST">
+        <input type="text" name="q" /><br>
+        <input type="submit" value="let me NOT google that for you" />
+    </form>
+    
+    <form>
+        <input name="username" autocomplete="off" placeholder="username" required="true" /><br>
+        <input name="password" autocomplete="off" type="password" required="true" /><br>
+        <input type="submit" value="login" />
+    </form>
+</body>
+
 </html>
