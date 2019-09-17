@@ -113,3 +113,29 @@ div ~ p :::: general sibling selector
 
 CSS BOX MODEL
 element -> padding -> border -> margin
+
+build a webpage
+text, pictures, etc
+stylesheet w/ min 6 rules
+flex-box is a plus
+12 tags to be used
+list
+table
+pick a theme
+
+action is form handler
+method is the http method
+
+<form method= "get" action="url">
+    <input type="text" name="inputToOutputOne">
+    <input type="submit" value="submit this form"> -- button
+</form>
+
+HTTP REQUESTS COMPONENTS
+URL
+HEADERS
+HTTP REQUESTS
+METHOD
+BODY
+
+GET VS POST

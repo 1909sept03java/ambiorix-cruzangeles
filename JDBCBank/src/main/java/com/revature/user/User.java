@@ -27,7 +27,7 @@ public class User {
 	}
 	
 	static void writeString(String USER_NAME, String USER_PASSWORD) {
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(filepath))) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(filepath, true))) {
 			bw.write(USER_NAME+":"+USER_PASSWORD+"\n");
 		} catch (IOException e) {
 			e.printStackTrace(); 
