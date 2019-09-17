@@ -52,3 +52,64 @@ unordered lists,
 ordered lists,
 
 </body>
+
+## CSS
+
+CSS: Cascading Stylesheets
+used to add styling to an html document
+can standardize your styling accross multiple pages
+
+inline <h1 style="background-color:blue"> this is blue </h1>
+
+style attribute is the CSS
+internal style
+<style> 
+h1 {
+    background=color : blue;
+}
+</style>
+
+external stylesheet
+<head>
+
+<link rel="stylesheet" href="styles.css">
+
+styling rules cascade
+
+into a virtual stylesheet
+composed of all roles applied
+intline, interally, externally
+
+inline has highest precedence
+internal and external have the same precedense
+depends on order of links and stylesheet elements
+browser default
+
+CSS Rule Set
+
+h1 {
+    background-color : blue;
+    margin : 10px;
+}
+
+3 types:
+element - tag name
+class - .classname applies the rule to all
+id - #id  applies to elements w/ attribute class="class-name"
+    - apply to element w/ attribute id="id"
+    ideally, unique identifier for an element
+
+h1, h2, h3 { ... }
+all h1, h2, h3 elements
+
+p.center { ... }
+all p tags with class ="center"
+
+div p { ... }
+space - descendant selector all p inside a div
+div > p :::: child selector
+div + p :::: adjacent sibling selector
+div ~ p :::: general sibling selector
+
+CSS BOX MODEL
+element -> padding -> border -> margin
