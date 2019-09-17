@@ -104,4 +104,4 @@ JDBCDemo/src/main/resources/connection.properties
 Week2Challenge/src/main/resources/connection.properties
 /target/
 
-BankAssignment/src/main/resources/connection.properties
+JDBCBank/src/main/resources/connection.properties
