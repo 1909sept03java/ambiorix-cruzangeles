@@ -41,5 +41,6 @@ aside {
 
 form {
     padding: 10px;
-    
+    margin: 10px;
+    border: 4px
 }

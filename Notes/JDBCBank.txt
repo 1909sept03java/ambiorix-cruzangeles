@@ -20,13 +20,14 @@ Use the DAO design pattern.
 Store superuser username/password and database connection information in a properties file. 
 
 Required technologies:  
-PL/SQL with at least one stored procedure, JDBC with prepared and callable statements,
+XXX PL/SQL with at least one stored procedure
+XXX JDBC with prepared and callable statements,
 Scanner for user input, JUnit tests on as much of the program as possible.
 
 Bonus:
 A user's transactions are recorded.
 A user may view transaction history. 
 
-Create a Maven project with your solution as JDBCBank, include it in your repository with your DB creation script (JDBCBank.sql). 
+XXX Create a Maven project with your solution as JDBCBank, include it in your repository with your DB creation script (JDBCBank.sql). 
 
 Presentations: Friday, Sept. 20
