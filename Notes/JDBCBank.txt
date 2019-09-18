@@ -1,10 +1,13 @@
 Bank Assignment
 Console application: 
-
+ 
 -- GUI STUFF
 A registered user can login with their username and password
 An unregistered user can register by creating a username and password 
-A superuser can view, create, update, and delete all users.
+
+XXX A superuser can view, create, update, and delete all users.
+-- this is done using a single super user and getting the credentials
+-- from a properties file
 
 A user can view their own existing accounts and balances.
 A user can create an account.
@@ -21,7 +24,7 @@ Store superuser username/password and database connection information in a prope
 
 Required technologies:  
 XXX PL/SQL with at least one stored procedure
-XXX JDBC with prepared and callable statements,
+XXX JDBC with prepared and callable statements
 Scanner for user input, JUnit tests on as much of the program as possible.
 
 Bonus:
