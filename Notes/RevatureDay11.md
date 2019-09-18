@@ -122,3 +122,12 @@ function makePerson(name, occupation) {
 accesing object properties
 fred.name
 fred["name"]
+
+dynamically add or modify obj properties
+delete fred.occupation
+fred.occupation is now undefined
+
+variable scopes
+1. global scope
+- belonging to the global object (in browser this is the window object)
+
