@@ -3,13 +3,14 @@ package com.revature.main;
 import java.util.Scanner;
 
 import com.revature.admin.Admin;
-import com.revature.user.User;
 
 public class Driver {
 
-	private static final Exception InvalidUserIDException = null;
+	// private static final Exception InvalidUserIDException = null;
 	private static Scanner scanner = new Scanner(System.in);
 	private static String input = null;
+	private static String username = null;
+	private static String password = null;
 	private static boolean isON = true;
 	private static boolean isON2 = true;
 
@@ -25,19 +26,19 @@ public class Driver {
 			switch (input) {
 
 			case "1": // creating a new user
-				User.create();
+				// user interaction
+				System.out.println("CREATING NEW USER-");
+				System.out.println("USERNAME: ");
+				username = scanner.nextLine();
+				System.out.println("PASSWORD: ");
+				password = scanner.nextLine();
+				Admin.insertUser(username, password);
 				break;
 
 			case "2": // logging in as an existing user
-				User.login();
 				break;
 
 			case "3": // logging in as admin
-
-				// useful variables
-				String username = null;
-				String password = null;
-
 				// user interaction
 				System.out.println("ADMIN LOGGING IN-");
 				System.out.println("USERNAME: ");
