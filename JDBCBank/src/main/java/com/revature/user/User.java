@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,32 +17,56 @@ import com.revature.utility.ConnectionUtility;
 
 public class User {
 
-	
-	
-	private static String filepath = "src/main/resources/users.txt";
-	
-	public static void create() {
-		String USER_NAME;
-		String USER_PASSWORD;
-		System.out.println("CREATING NEW USER-");
-		Scanner scanner = new Scanner(System.in);
-		System.out.print("USER_NAME: ");
-		USER_NAME = scanner.nextLine();
-		System.out.print("USER_PASSWORD: ");
-		USER_PASSWORD = scanner.nextLine();
-		// System.out.println("YOU'VE ENTER: " + USER_NAME + ", " + USER_PASSWORD);
-		writeString(USER_NAME, USER_PASSWORD);
-		scanner.close();
+	public static boolean exists(String username, String password) {
+		try {
+			Connection conn = ConnectionUtility.getConnection();
+			System.out.println(conn);
+			String query = "SELECT * FROM TABLE_USERS";
+			PreparedStatement ps = conn.prepareStatement(query);
+			if (ps.execute()) {
+				ResultSet rs = ps.getResultSet();
+				while (rs.next()) {
+					if (username.equals(rs.getString("USER_USERNAME"))
+							&& password.equals(rs.getString("USER_PASSWORD"))) {
+						// System.out.println("USER EXISTS-");
+						return true;
+					}
+				}
+			}
+		} catch (SQLException | IOException e1) {
+			e1.printStackTrace();
+		}
+		// System.out.println("USER DOES NOT EXISTS-");
+		return false;
 	}
-	
-	static void writeString(String USER_NAME, String USER_PASSWORD) {
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(filepath, true))) {
-			bw.write(USER_NAME+":"+USER_PASSWORD+"\n");
-		} catch (IOException e) {
-			e.printStackTrace(); 
+
+	private static String filepath = "src/main/resources/users.txt";
+
+	public static void create(String username, String password) {
+		try {
+			Connection conn = ConnectionUtility.getConnection();
+			System.out.println(conn);
+			CallableStatement cs = conn.prepareCall("{call TABLE_USERS_INSERT(?,?)}");
+			cs.setString(1, username);
+			cs.setString(2, password);
+			if (cs.executeUpdate() == 1) {
+				System.out.println("User created successfully.");
+			} else {
+				System.out.println("User was not created successfully.-");
+			}
+		} catch (SQLException | IOException e1) {
+			e1.printStackTrace();
 		}
 	}
-	
+
+	static void writeString(String USER_NAME, String USER_PASSWORD) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(filepath, true))) {
+			bw.write(USER_NAME + ":" + USER_PASSWORD + "\n");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static void login() {
 		String USER_NAME = null;
 		String USER_PASSWORD = null;
@@ -52,19 +77,19 @@ public class User {
 		System.out.print("USER_PASSWORD: ");
 		USER_PASSWORD = scanner.nextLine();
 		// System.out.println("YOU'VE ENTER: " + USER_NAME + ", " + USER_PASSWORD);
-		if(read(USER_NAME, USER_PASSWORD)) {
+		if (read(USER_NAME, USER_PASSWORD)) {
 			System.out.println("LOGIN SUCCESSFUL");
 		}
 		scanner.close();
 	}
-	
+
 	static boolean read(String USER_NAME, String USER_PASSWORD) {
 		boolean userExists = false;
-		try(BufferedReader br = new BufferedReader(new FileReader(filepath))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(filepath))) {
 			String currString = null;
 			String combined = USER_NAME + ":" + USER_PASSWORD;
-			while((currString = br.readLine())!=null) {
-				if(combined.equals(currString)) {
+			while ((currString = br.readLine()) != null) {
+				if (combined.equals(currString)) {
 					userExists = true;
 				}
 			}
@@ -75,7 +100,7 @@ public class User {
 		}
 		return userExists;
 	}
-	
+
 	public static boolean login(String username, String password) {
 		try {
 			Connection conn = ConnectionUtility.getConnection();
@@ -86,7 +111,8 @@ public class User {
 				System.out.println("QUERY SUCESSFUL-");
 				ResultSet rs = ps.getResultSet();
 				while (rs.next()) {
-					if (username.equals(rs.getString("USER_USERNAME")) && password.equals(rs.getString("USER_PASSWORD"))) {
+					if (username.equals(rs.getString("USER_USERNAME"))
+							&& password.equals(rs.getString("USER_PASSWORD"))) {
 						System.out.println("REGULAR USER LOGIN SUCCESSFUL-");
 						return true;
 					}
@@ -99,7 +125,7 @@ public class User {
 		System.out.println("REGULAR USER LOGIN FAILED-");
 		return false;
 	}
-	
+
 	public static int getID(String username, String password) {
 		try {
 			Connection conn = ConnectionUtility.getConnection();
@@ -110,7 +136,8 @@ public class User {
 				// System.out.println("QUERY SUCESSFUL-");
 				ResultSet rs = ps.getResultSet();
 				while (rs.next()) {
-					if (username.equals(rs.getString("USER_USERNAME")) && password.equals(rs.getString("USER_PASSWORD"))) {
+					if (username.equals(rs.getString("USER_USERNAME"))
+							&& password.equals(rs.getString("USER_PASSWORD"))) {
 						return rs.getInt("USER_ID");
 					}
 				}
@@ -121,7 +148,7 @@ public class User {
 		}
 		// System.out.println("REGULAR USER LOGIN FAILED-");
 		return -1;
-		
+
 	}
 
 	public static void viewAccounts(int userID) {
@@ -168,7 +195,7 @@ public class User {
 
 	public static void deposit(String input, String bankID) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
