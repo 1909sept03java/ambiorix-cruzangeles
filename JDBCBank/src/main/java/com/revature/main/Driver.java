@@ -7,17 +7,19 @@ import com.revature.user.User;
 
 public class Driver {
 
+	// variables for user input
 	private static Scanner scanner = new Scanner(System.in);
 	private static String input = null;
-
 	private static String username = null;
 	private static String password = null;
 
+	// variables for the do-while loops (main interface, admin interface, user interface)
 	private static boolean isON = true;
 	private static boolean isON2 = true;
 	private static boolean isON3 = true;
+	
+	// userID and bankID variables
 	private static int userID = -1;
-	private static double balance = 0;
 	private static String bankID = null;
 
 	public static void main(String[] args) {
@@ -28,16 +30,15 @@ public class Driver {
 			input = scanner.nextLine();
 			switch (input) {
 			case "1": // creating a new user
-				if (getUsernamePassword(0)) {
+				if (getUsernamePassword(0)) { // the 0 is for creating
 					if (User.exists(username, password))
 						System.out.println("Can't create a user that already exists.");
 					else
 						User.create(username, password);
 				}
-				isON = true;
 				break;
 			case "2": // logging in as an existing user
-				if (getUsernamePassword(1)) {
+				if (getUsernamePassword(1)) { // the 1 is for logging in
 					if (User.exists(username, password)) {
 						do {
 							userID = User.getID(username, password);
@@ -50,7 +51,6 @@ public class Driver {
 								isON3 = true;
 								break;
 							case "2": // creating a new account
-								// user interaction
 								System.out.println("CREATING ACCOUNT-");
 								System.out.println("STARTING BALANCE:");
 								input = scanner.nextLine();
