@@ -178,7 +178,6 @@ public class User {
 	public static void insertAccounts(String balance, int userID) {
 		try {
 			Connection conn = ConnectionUtility.getConnection();
-			// System.out.println(conn);
 			String query = "INSERT INTO TABLE_BANK_ACCOUNTS(BANK_ACCOUNT_ID, BANK_ACCOUNT_BALANCE, USER_ID) VALUES(TABLE_BANK_ACCOUNTS_SEQUENCE.NEXTVAL,?,?)";
 			double bankBalance = Double.parseDouble(balance);
 			PreparedStatement ps = conn.prepareStatement(query);
@@ -188,14 +187,39 @@ public class User {
 				System.out.println("QUERY SUCESSFUL-");
 			}
 		} catch (SQLException | IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
 
-	public static void deposit(String input, String bankID) {
-		// TODO Auto-generated method stub
-
+	public static void deposit(String balance, String bankID) {
+		try {
+			Connection conn = ConnectionUtility.getConnection();
+			String getBalance = "SELECT * FROM TABLE_BANK_ACCOUNTS WHERE BANK_ACCOUNT_ID = ?";
+			double tableBalance = 0;
+			double addBalance = Double.parseDouble(balance);
+			PreparedStatement pstmnt = conn.prepareStatement(getBalance);
+			pstmnt.setInt(1, Integer.parseInt(bankID));
+			if (pstmnt.execute()) {
+				ResultSet rs = pstmnt.getResultSet();
+				while (rs.next()) {
+					tableBalance = rs.getDouble("BANK_ACCOUNT_BALANCE");
+				}
+			}
+			if (tableBalance + addBalance > 99999) {
+				System.out.println("Account can't exceed $99,999");
+			}
+			else {
+				String query = "UPDATE TABLE_BANK_ACCOUNTS SET BANK_ACCOUNT_BALANCE = ?  WHERE BANK_ACCOUNT_ID = ?";
+				PreparedStatement ps = conn.prepareStatement(query);
+				ps.setDouble(1, tableBalance + addBalance);
+				ps.setString(2, bankID);
+				if (ps.execute()) {
+					System.out.println("QUERY SUCESSFUL-");
+				}
+			}
+		} catch (SQLException | IOException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 }

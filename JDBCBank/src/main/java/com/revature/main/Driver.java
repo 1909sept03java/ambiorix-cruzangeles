@@ -34,6 +34,7 @@ public class Driver {
 					else
 						User.create(username, password);
 				}
+				isON = true;
 				break;
 			case "2": // logging in as an existing user
 				if (getUsernamePassword(1)) {
@@ -46,6 +47,7 @@ public class Driver {
 							switch (input) {
 							case "1": // viewing accounts
 								User.viewAccounts(userID);
+								isON3 = true;
 								break;
 							case "2": // creating a new account
 								// user interaction
@@ -53,6 +55,7 @@ public class Driver {
 								System.out.println("STARTING BALANCE:");
 								input = scanner.nextLine();
 								User.insertAccounts(input, userID);
+								isON3 = true;
 								break;
 							case "3": // deposit
 								System.out.println("DEPOSITING-");
@@ -61,8 +64,16 @@ public class Driver {
 								System.out.println("AMOUNT TO DEPOSIT:");
 								input = scanner.nextLine();
 								User.deposit(input, bankID);
+								isON3 = true;
 								break;
 							case "4": // withdrawal
+								System.out.println("DEPOSITING-");
+								System.out.println("ENTER BANK ID TO DEPOSIT INTO:");
+								bankID = scanner.nextLine();
+								System.out.println("AMOUNT TO DEPOSIT:");
+								input = scanner.nextLine();
+								User.deposit("-"+input, bankID);
+								isON3 = true;
 								break;
 							case "5": // exiting
 								System.out.println("EXITING LOGIN SCREEN-");
@@ -74,6 +85,7 @@ public class Driver {
 						} while (isON3);
 					}
 				}
+				isON = true;
 				break;
 			case "3": // logging in as admin
 				// user interaction
@@ -82,21 +94,18 @@ public class Driver {
 				username = scanner.nextLine();
 				System.out.println("PASSWORD: ");
 				password = scanner.nextLine();
-
 				// entering the admin screen
 				if (Admin.login(username, password)) {
 					do {
 						System.out.println(
 								"Would you like to \n1) |VIEW USERS| \n2) |INSERT NEW USER| \n3) |UPDATE EXISTING USER| \n4) |DELETE USER| \n5) |EXIT|");
 						input = scanner.nextLine();
-
 						// switching between screens
 						switch (input) {
-
 						case "1": // viewing users
 							Admin.viewUsers();
+							isON2 = true;
 							break;
-
 						case "2": // creating a new user
 							// user interaction
 							System.out.println("CREATING NEW USER-");
@@ -105,8 +114,8 @@ public class Driver {
 							System.out.println("PASSWORD: ");
 							password = scanner.nextLine();
 							Admin.insertUser(username, password);
+							isON2 = true;
 							break;
-
 						case "3": // updating a user
 							// user interaction
 							System.out.println("UPDATING A USER-");
@@ -120,8 +129,8 @@ public class Driver {
 							System.out.println("PASSWORD: ");
 							password = scanner.nextLine();
 							Admin.updateUser(username, password, Integer.parseInt(input));
+							isON2 = true;
 							break;
-
 						case "4":
 							System.out.println("DELETING A USER-");
 							System.out.println("ENTER USER_ID TO DELETE: ");
@@ -130,30 +139,28 @@ public class Driver {
 								// throw InvalidUserIDException;
 							}
 							Admin.deleteUser(Integer.parseInt(input));
+							isON2 = true;
 							break;
 
 						case "5": // exiting main admin screen
 							System.out.println("EXITING ADMIN SCREEN-");
 							isON2 = false;
 							break;
-
 						default:
 							System.out.println("INCORRECT INPUT- TRY AGAIN");
 						}
 					} while (isON2);
 				}
+				isON = true;
 				break;
-
 			case "4": // exiting
 				System.out.println("EXITING-");
 				isON = false;
 				break;
-
 			default: // incorrect input
 				System.out.println("INCORRECT INPUT- TRY AGAIN");
 			}
 		} while (isON);
-
 		System.out.println("Thank you for using Rex's JDBCBank Console Application!");
 		scanner.close();
 	}
