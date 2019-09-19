@@ -131,3 +131,7 @@ variable scopes
 1. global scope
 - belonging to the global object (in browser this is the window object)
 
+
+
+n = 2; 3 possible combinations
+n = 3; 7 possible

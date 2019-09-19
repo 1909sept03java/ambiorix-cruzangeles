@@ -16,7 +16,7 @@ window.onload = function () {
     document.getElementById("fizzBuzzButton2").addEventListener("click", function () {
         let numArray = document.getElementById("numArray").value;
         let wordArray = document.getElementById("wordArray").value;
-        fizzBuzzOrSimilar2(num1, word1, num2, word2);
+        fizzBuzzOrSimilar2(numArray, wordArray);
     });
 }
 
@@ -41,20 +41,37 @@ function fizzBuzzOrSimilar(num1, word1, num2, word2) {
 function fizzBuzzOrSimilar2(numArray, wordArray) {
     var numArraySplit = numArray.split(",");
     var wordArraySplit = wordArray.split(",");
-    for (var i = 1; i < 101; i++) {
-        for (var j = 1; j < numArraySplit.length(); j++) {
-            if ((i % (num1 * num2)) === 0) {
-                console.log(word1 + word2);
+    console.log(numArraySplit.length)
+    if (numArraySplit.length != wordArraySplit.length) { 
+        console.log("Different Lengths, try again")
+    }
+    else {
+
+        n = numArraySplit.length
+        for (var i = 1; i < 100; i++) {
+            while (n > 0) {
+                index = numArraySplit.length - n;
+                var y = numArraySplit[index] * numArraySplit[index+1]
+                if (y%i == 0) {
+                    console.log(wordArraySplit[index] + wordArraySplit[index+1])
+                }
+                n = n -1
             }
-            else if ((i % num1) === 0) {
-                console.log(word1)
-            }
-            else if ((i % num2) === 0) {
-                console.log(word2)
-            }
-            else {
-                console.log(i)
+            console.log(i)
+        }
+    }
+        /*
+        
+        for (var i = 1; i < 101; i++) {
+            for (var j = 0; j < numArraySplit.length; j++) {
+                if ((numArraySplit[j]%i) == 0){
+                    console.log(wordArraySplit[j])
+                }
+                else {
+                    console.log(i)
+                }
             }
         }
     }
+          */
 }

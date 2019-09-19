@@ -6,10 +6,18 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Scanner;
+
+import com.revature.utility.ConnectionUtility;
 
 public class User {
 
+	
+	
 	private static String filepath = "src/main/resources/users.txt";
 	
 	public static void create() {
@@ -66,6 +74,101 @@ public class User {
 			e.printStackTrace();
 		}
 		return userExists;
+	}
+	
+	public static boolean login(String username, String password) {
+		try {
+			Connection conn = ConnectionUtility.getConnection();
+			System.out.println(conn);
+			String query = "SELECT * FROM TABLE_USERS";
+			PreparedStatement ps = conn.prepareStatement(query);
+			if (ps.execute()) {
+				System.out.println("QUERY SUCESSFUL-");
+				ResultSet rs = ps.getResultSet();
+				while (rs.next()) {
+					if (username.equals(rs.getString("USER_USERNAME")) && password.equals(rs.getString("USER_PASSWORD"))) {
+						System.out.println("REGULAR USER LOGIN SUCCESSFUL-");
+						return true;
+					}
+				}
+			}
+		} catch (SQLException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println("REGULAR USER LOGIN FAILED-");
+		return false;
+	}
+	
+	public static int getID(String username, String password) {
+		try {
+			Connection conn = ConnectionUtility.getConnection();
+			System.out.println(conn);
+			String query = "SELECT * FROM TABLE_USERS";
+			PreparedStatement ps = conn.prepareStatement(query);
+			if (ps.execute()) {
+				// System.out.println("QUERY SUCESSFUL-");
+				ResultSet rs = ps.getResultSet();
+				while (rs.next()) {
+					if (username.equals(rs.getString("USER_USERNAME")) && password.equals(rs.getString("USER_PASSWORD"))) {
+						return rs.getInt("USER_ID");
+					}
+				}
+			}
+		} catch (SQLException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		// System.out.println("REGULAR USER LOGIN FAILED-");
+		return -1;
+		
+	}
+
+	public static void viewAccounts(int userID) {
+		try {
+			Connection conn = ConnectionUtility.getConnection();
+			// System.out.println(conn);
+			String query = "SELECT * FROM TABLE_BANK_ACCOUNTS WHERE USER_ID = ?";
+			int bankID = 0;
+			double bankBalance = 0;
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setInt(1, userID);
+			if (ps.execute()) {
+				System.out.println("QUERY SUCESSFUL-");
+				ResultSet rs = ps.getResultSet();
+				while (rs.next()) {
+					bankID = rs.getInt("BANK_ACCOUNT_ID");
+					bankBalance = rs.getDouble("BANK_ACCOUNT_BALANCE");
+					System.out.println("| " + bankID + " | " + " | " + bankBalance + " |");
+				}
+			}
+		} catch (SQLException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+
+	public static void insertAccounts(String balance, int userID) {
+		try {
+			Connection conn = ConnectionUtility.getConnection();
+			// System.out.println(conn);
+			String query = "INSERT INTO TABLE_BANK_ACCOUNTS(BANK_ACCOUNT_ID, BANK_ACCOUNT_BALANCE, USER_ID) VALUES(TABLE_BANK_ACCOUNTS_SEQUENCE.NEXTVAL,?,?)";
+			double bankBalance = Double.parseDouble(balance);
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setDouble(1, bankBalance);
+			ps.setInt(2, userID);
+			if (ps.execute()) {
+				System.out.println("QUERY SUCESSFUL-");
+			}
+		} catch (SQLException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+
+	public static void deposit(String input, String bankID) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

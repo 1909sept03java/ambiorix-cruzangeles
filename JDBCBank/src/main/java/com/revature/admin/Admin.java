@@ -52,7 +52,7 @@ public class Admin {
 					userID = rs.getString("USER_ID");
 					username = rs.getString("USER_USERNAME");
 					password = rs.getString("USER_PASSWORD");
-					System.out.println("| "+userID+" | "+" | "+username+" - "+password+" |");
+					System.out.println("| " + userID + " | " + " | " + username + " - " + password + " |");
 				}
 			}
 		} catch (SQLException | IOException e1) {
@@ -60,22 +60,28 @@ public class Admin {
 			e1.printStackTrace();
 		}
 	}
-	
+
 	public static void insertUser(String username, String password) {
-		try {
-			Connection conn = ConnectionUtility.getConnection();
-			System.out.println(conn);
-			CallableStatement cs = conn.prepareCall("{call TABLE_USERS_INSERT(?,?)}");
-			cs.setString(1, username);
-			cs.setString(2, password);
-			if (cs.executeUpdate() == 1) {
-				System.out.println("QUERY SUCESSFUL-");
-			} else {
-				System.out.println("QUERY UNSCESSFUL-");
+		if (!(username.length() > 0 && username.length() <= 20)) {
+			System.out.println("Username length must be between 1 and 20");
+		} else if (!(password.length() > 0 && password.length() <= 20)) {
+			System.out.println("Password length must be between 1 and 20");
+		} else {
+			try {
+				Connection conn = ConnectionUtility.getConnection();
+				System.out.println(conn);
+				CallableStatement cs = conn.prepareCall("{call TABLE_USERS_INSERT(?,?)}");
+				cs.setString(1, username);
+				cs.setString(2, password);
+				if (cs.executeUpdate() == 1) {
+					System.out.println("QUERY SUCESSFUL-");
+				} else {
+					System.out.println("QUERY UNSCESSFUL-");
+				}
+			} catch (SQLException | IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-		} catch (SQLException | IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
 		}
 	}
 
