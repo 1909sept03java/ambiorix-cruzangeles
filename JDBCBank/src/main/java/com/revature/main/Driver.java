@@ -63,16 +63,32 @@ public class Driver {
 								bankID = scanner.nextLine();
 								System.out.println("AMOUNT TO DEPOSIT:");
 								input = scanner.nextLine();
-								User.deposit(input, bankID);
+								try {
+									if (Double.parseDouble(input) < 0) {
+										System.out.println("invalid input");
+									}
+									else 
+										User.deposit(input, bankID);
+								} catch (NumberFormatException e) {
+									System.out.println("invalid input");
+								}
 								isON3 = true;
 								break;
 							case "4": // withdrawal
-								System.out.println("DEPOSITING-");
+								System.out.println("WITHDRAWAL-");
 								System.out.println("ENTER BANK ID TO WITHDRAWAL FROM:");
 								bankID = scanner.nextLine();
 								System.out.println("AMOUNT TO WITHDRAWAL:");
 								input = scanner.nextLine();
-								User.withdrawal(input, bankID);
+								try {
+									if (Double.parseDouble(input) < 0) {
+										System.out.println("invalid input");
+									}
+									else 
+										User.withdrawal(input, bankID);
+								} catch (NumberFormatException e) {
+									System.out.println("invalid input");
+								}
 								isON3 = true;
 								break;
 							case "5": // deleting an account
@@ -91,6 +107,7 @@ public class Driver {
 							}
 						} while (isON3);
 					}
+					
 				}
 				isON = true;
 				break;

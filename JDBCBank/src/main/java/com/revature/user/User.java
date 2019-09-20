@@ -237,7 +237,7 @@ public class User {
 				}
 			}
 			if (tableBalance - addBalance < 0) {
-				System.out.println("Account can't exceed $99,999");
+				System.out.println("Account can't go below $0");
 			}
 			else {
 				String query = "UPDATE TABLE_BANK_ACCOUNTS SET BANK_ACCOUNT_BALANCE = ?  WHERE BANK_ACCOUNT_ID = ?";
