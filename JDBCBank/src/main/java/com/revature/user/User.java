@@ -222,4 +222,68 @@ public class User {
 		}
 	}
 
+	public static void withdrawal(String balance, String bankID) {
+		try {
+			Connection conn = ConnectionUtility.getConnection();
+			String getBalance = "SELECT * FROM TABLE_BANK_ACCOUNTS WHERE BANK_ACCOUNT_ID = ?";
+			double tableBalance = 0;
+			double addBalance = Double.parseDouble(balance);
+			PreparedStatement pstmnt = conn.prepareStatement(getBalance);
+			pstmnt.setInt(1, Integer.parseInt(bankID));
+			if (pstmnt.execute()) {
+				ResultSet rs = pstmnt.getResultSet();
+				while (rs.next()) {
+					tableBalance = rs.getDouble("BANK_ACCOUNT_BALANCE");
+				}
+			}
+			if (tableBalance - addBalance < 0) {
+				System.out.println("Account can't exceed $99,999");
+			}
+			else {
+				String query = "UPDATE TABLE_BANK_ACCOUNTS SET BANK_ACCOUNT_BALANCE = ?  WHERE BANK_ACCOUNT_ID = ?";
+				PreparedStatement ps = conn.prepareStatement(query);
+				ps.setDouble(1, tableBalance - addBalance);
+				ps.setString(2, bankID);
+				if (ps.execute()) {
+					System.out.println("QUERY SUCESSFUL-");
+				}
+			}
+		} catch (SQLException | IOException e1) {
+			e1.printStackTrace();
+		}
+	}
+
+	
+	public static void deleteAccount(String bankID) {
+		try {
+			Connection conn = ConnectionUtility.getConnection();
+			String getBalance = "SELECT * FROM TABLE_BANK_ACCOUNTS WHERE BANK_ACCOUNT_ID = ?";
+			double tableBalance = 0;
+			PreparedStatement pstmnt = conn.prepareStatement(getBalance);
+			pstmnt.setInt(1, Integer.parseInt(bankID));
+			if (pstmnt.execute()) {
+				ResultSet rs = pstmnt.getResultSet();
+				while (rs.next()) {
+					tableBalance = rs.getDouble("BANK_ACCOUNT_BALANCE");
+				}
+			}
+			if (tableBalance == 0) {
+				System.out.println(conn);
+				CallableStatement cs = conn.prepareCall("{call TABLE_BANK_ACCOUNTS_DELETE(?)}");
+				cs.setInt(1, Integer.parseInt(bankID));
+				if (cs.executeUpdate() == 1) {
+					System.out.println("QUERY SUCESSFUL-");
+				} else {
+					System.out.println("QUERY UNSCESSFUL-");
+				}
+			}
+			else {
+				System.out.println("ACCOUNT BALANCE IS NOT 0");
+			}
+		} catch (SQLException | IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+
 }

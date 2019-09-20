@@ -43,7 +43,7 @@ public class Driver {
 						do {
 							userID = User.getID(username, password);
 							System.out.println(
-									"Would you like to \n1) |VIEW ACCOUNTS| \n2) |CREATE AN ACCOUNT| \n3) |DEPOSIT| \n4) |WITHDRAWAL| \n5) |EXIT|");
+									"Would you like to \n1) |VIEW ACCOUNTS| \n2) |CREATE AN ACCOUNT| \n3) |DEPOSIT| \n4) |WITHDRAWAL| \n5) |DELETE ACCOUNT| \n6) |EXIT|");
 							input = scanner.nextLine();
 							switch (input) {
 							case "1": // viewing accounts
@@ -68,14 +68,21 @@ public class Driver {
 								break;
 							case "4": // withdrawal
 								System.out.println("DEPOSITING-");
-								System.out.println("ENTER BANK ID TO DEPOSIT INTO:");
+								System.out.println("ENTER BANK ID TO WITHDRAWAL FROM:");
 								bankID = scanner.nextLine();
-								System.out.println("AMOUNT TO DEPOSIT:");
+								System.out.println("AMOUNT TO WITHDRAWAL:");
 								input = scanner.nextLine();
-								User.deposit("-"+input, bankID);
+								User.withdrawal(input, bankID);
 								isON3 = true;
 								break;
-							case "5": // exiting
+							case "5": // deleting an account
+								System.out.println("DELETING AN ACCOUNT-");
+								System.out.println("ENTER BANK ID TO DELETE:");
+								bankID = scanner.nextLine();
+								User.deleteAccount(bankID);
+								isON3 = true;
+								break;
+							case "6": // exiting
 								System.out.println("EXITING LOGIN SCREEN-");
 								isON3 = false;
 								break;
@@ -190,17 +197,6 @@ public class Driver {
 			return false;
 		}
 		return true;
-	}
-
-	class InvalidUserIDException extends Exception {
-
-		private static final long serialVersionUID = 1L;
-
-		InvalidUserIDException() {
-			super();
-			// TODO Auto-generated constructor stub
-		}
-
 	}
 
 }
