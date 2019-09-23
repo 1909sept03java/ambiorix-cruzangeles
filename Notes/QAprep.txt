@@ -1,0 +1,322 @@
+Java
+
+What is Java? / Why Java?
+What is JRE / JDK / JVM?
+
+What is an object / class?
+
+What is the root class from which every class extends?
+
+What are the 4 pillars of OOP / Explain each?
+
+What is the difference between an abstract class and an interface?
+
+What are the implicit modifiers for interface variables?
+
+What are the primitive data types in Java?
+
+What is the difference between method overloading and overriding?
+
+
+Difference between extends and implements?
+
+What are collections in Java?
+
+What are the interfaces in the Collections API?
+
+What is the difference between a Set and a List?
+
+What is the difference between an Array and an ArrayList?
+
+What is the difference between ArrayList and Vector?
+
+
+What is the difference between TreeSet and HashSet?
+
+What is the difference between HashTable and HashMap?
+
+
+Are Maps in the Collections API?
+
+Where are Strings stored?
+
+
+What are generics? What is the diamond operator (<>)?
+
+What are enumerations (enums)?
+
+What are annotations?
+
+
+Explain stack vs heap?
+
+
+What is a POJO? What is a bean?
+
+What is the difference between final, .finalize(), and finally?
+
+Do you need a catch block? Can have more than 1? Order of them?
+
+
+What is base class of all exceptions? What interface do they all implement?
+
+
+List some checked and unchecked exceptions?
+
+What is a Marker interface?
+
+
+Why are strings immutable in java?
+
+
+What is the difference between String, StringBuilder, and StringBuffer?
+
+
+What are the access modifiers in Java? Explain them.
+
+
+What are the non-access modifiers in Java?
+
+What is the difference between static and final variables?
+
+What are the default values for all data types in Java?
+
+What are the implicit modifiers for interface variables / methods?
+
+What is a wrapper class?
+
+What is autoboxing / unboxing?
+
+What is Reflection API?
+			
+Is Java pass-by-value or pass-by-reference?
+
+What is the difference between == and .equals()?
+
+throw vs throws vs Throwable?
+
+First line of constructor?
+
+What is JUnit?
+
+What is TDD?
+
+What are the annotations in JUnit? Order of execution?
+
+Give an example of a test case?
+
+What is Maven?
+
+What is the Maven lifecycle?
+
+Where / when does Maven retrieve dependencies from? Where are they stored locally?
+
+
+What is the POM and what is the pom.xml?
+
+
+What methods are available in the Object class?
+
+
+What is an enhanced for loop and what is a forEach loop?
+
+What is try-with-resources? What interface must the resource implement to use this feature?
+
+What are covariant return types?
+
+What are 3 usages of super keyword?
+
+Can you overload / override a main method? static method? a private method? a default method? a protected method?
+
+How to pass multiple values with a single parameter into a method?
+
+What is static block?
+
+What is static imports?
+
+What makes a class immutable?
+
+If two objects are equal, do they have the same hashcode? If not equal?
+
+What data types are supported in switch statements?
+
+List all non-access modifiers?
+
+Which collections cannot hold null values?
+
+If 2 interfaces have identical default methods and you implement both, what happens?
+
+If 2 interfaces have same variable names and you implement both, what happens?
+
+Why does HashTable not take null keys?
+
+Multi-catch block - can you catch more than one exception in a single catch block?
+
+SQL and JDBC
+
+What is SQL?	
+
+What are the sublanguages in SQL?	
+
+What commands do we see in these sublanguages?
+
+What is a Primary Key?
+
+What is a Composite Key?
+
+What is a Foreign Key?
+
+What are the different types of joins?
+
+What are the different constraints in Oracle SQL?
+Order By vs Group By?
+
+Why would we ever use a self join?
+
+What is referential Integrity?
+
+Explain Normalization.
+
+What is the difference between a join and a union?
+
+What is a view?
+
+What are nested queries/subqueries and why do we use them?	
+
+What are indexes?	
+
+What are aggregate and scalar functions?	
+
+What are triggers and when can I set them to activate?
+
+What are cursors?
+
+Difference between implicit and explicit cursors?
+
+What is the difference between clustered and unclustered indexes?	
+
+How do you add a column to a table?
+
+What is an ERD?
+
+What is the difference between WHERE and HAVING?
+
+How do you prevent SQL injection in JDBC?
+
+What is the DAO pattern?
+
+Why create a DAO interface?
+
+T/F: The application should deal with the data alongside the DAO.
+
+What design pattern would we use if there are multiple DAO implementations?
+
+What is JDBC? What is its package name? What kind of exceptions does it throw?
+
+What are the JDBC interfaces?
+
+How are tables related/connected to each other in a relational database?
+
+How to get a connection in JDBC?
+
+Difference between Statement, PreparedStatement, and CallableStatement?
+
+
+HTML/CSS
+
+What is HTML
+
+What is the structure of an HTML document? List some tags. What is <head> used for? <body>?
+
+What is a doctype?
+
+What is the tag for an ordered list? Unordered list?
+
+What are some HTML5 tags? Why were HTML5 tags introduced?
+
+Do all tags come in a pair? What are the other things inside tags called? list some.
+
+What is the syntax for a comment in HTML?
+
+Give me the HTML markup for a table.
+
+What are some tags you would use in a form?
+
+What is CSS? what are the different ways of styling an HTML file? Which is best? why?
+
+Describe the CSS box model.
+
+Syntax for styling an element? What is a class and how to style them? What is an id? how to style? difference?
+
+What if I want to select child elements, What syntax is that?
+
+Can I select multiple elements at once? How?
+
+What is Bootstrap?
+
+Describe the Bootstrap grid system
+
+
+JavaScript
+
+What is JavaScript? What do we use it for?
+
+Where is the best place to put a script tag in your HTML document?
+
+What are the data types in JS?
+
+What are the variable scopes in JS?
+
+What are JS objects? What is the syntax?
+
+What is JSON? is it different from JS objects?
+
+How to convert JS object to/from JSON?
+
+What does truthy/falsy mean?
+
+What is type coercion?
+
+What is the difference between == and === ?
+
+How does inheritance work in JS?
+
+What is unique about functions in JS?
+
+What are callback functions? self-invoking functions?
+
+What is closure? Why use closures?
+
+What is the this keyword?
+
+Does JS have classes? when were they introduced?
+
+What is new with ES6? What are template literals, let keyword, Symbols, Promises?
+
+Arrow function? What makes it different from normal function?
+
+What is strict mode?
+
+What will happen when I run this code: console.log(0.1+0.2==0.3) ?
+
+What are arrays like in JS? Can you change their size?
+
+What is a CDN? What are the benefits?
+
+What is Fetch? Why do we use it? 
+
+What are the steps for sending a Fetch request? 
+
+What is AJAX? why do we use it?
+
+What are steps to sending an AJAX request?
+
+What is the DOM?
+
+How to select elements from the DOM? How to insert elements dynamically?
+
+What are events / event listeners? What are some events we can listen for? ways of setting event listeners?
+
+What is bubbling and capturing and what is the difference?
+
+How do you stop event propagation?
