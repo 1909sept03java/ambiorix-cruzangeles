@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+}
+
+div {
+    padding: 10px;
+    margin: 10px;
+    border: 4px;
+    color: white;
+}
+
+#name1, #name3, #name5, #name7, #name9, #name11, #name13, #name15, #name17, #name19, #name21, #name23, #name25 {
+    color: red;
+}
+
+#name2, #name4, #name6, #name8, #name10, #name12, #name14, #name16, #name18, #name20, #name22, #name24 {
+    color:orange;
+}

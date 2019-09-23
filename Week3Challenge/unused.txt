@@ -1,0 +1,82 @@
+function getRandomUser2() {
+    
+    /* fetch a random user 25 times and append info to the users array each time */
+    for (var j = 0; j < users.length; j++) {
+        
+        fetch(apiUrl, { method: "GET", headers: { "Accept": "application/json" } })
+        // next is what occurs when the response returns
+        .then((response) => {
+            let data = response.json();
+            return data;
+        })
+        // now that the data is returned, time to use it
+        .then((data) => {
+            /*
+            users[j][1] = "Name: " + data.results[0].name.title + " " + data.results[0].name.last;
+                users[j][2] = "Street: " + data.results[0].location.street + ", City: " + data.results[0].location.city;
+                users[j][3] = "Email: " + data.results[0].email;
+                users[j][4] = "Age: " + data.results[0].dob.age + ", Date of Birth: " + data.results[0].dob.date;
+                users[j][5] = data.results[0].picture.thumbnail;
+                */
+
+                /* creating a division that contains an unordered list of info for each person */
+                var tempDiv = document.createElement("div");
+
+                var tempUl = document.createElement("ul");
+
+                /* list elements */
+                var tempLi1 = document.createElement("li");
+                tempLi1.setAttribute("id", "name");
+                tempLi1.append("Name: " + data.results[0].name.title + " " + data.results[0].name.last);
+
+                var tempLi2 = document.createElement("li");
+                tempLi2.setAttribute("id", "location");
+                tempLi2.append("Street: " + data.results[0].location.street + ", City: " + data.results[0].location.city);
+
+                var tempLi3 = document.createElement("li");
+                tempLi3.setAttribute("id", "email");
+                tempLi3.append("Email: " + data.results[0].email);
+
+                var tempLi4 = document.createElement("li");
+                tempLi4.setAttribute("id", "dob");
+                tempLi4.append("Age: " + data.results[0].dob.age + ", Date of Birth: " + data.results[0].dob.date);
+
+                /* list element 5 child */
+                var tempLi5 = document.createElement("li");
+                var imgThumbnail = document.createElement("img");
+                imgThumbnail.setAttribute("id", "thumbnail");
+                imgThumbnail.setAttribute("src", data.results[0].picture.thumbnail);
+                imgThumbnail.setAttribute("alt", "empty");
+
+                /* appending all the children to parents */
+                tempLi5.appendChild(imgThumbnail);
+
+                tempUl.appendChild(tempLi1);
+                tempUl.appendChild(tempLi2);
+                tempUl.appendChild(tempLi3);
+                tempUl.appendChild(tempLi4);
+                tempUl.appendChild(tempLi5);
+
+                tempDiv.appendChild(tempUl);
+
+                document.body.appendChild(tempDiv);
+
+                /*
+                document.getElementById('name').innerText = "Name: " + data.results[0].name.title + " " + data.results[0].name.last;
+                document.getElementById('location').innerText = "Street: " + data.results[0].location.street + ", City: " + data.results[0].location.city;
+                document.getElementById('email').innerText = "Email: " + data.results[0].email;
+                document.getElementById('dob').innerText = "Age: " + data.results[0].dob.age + ", Date of Birth: " + data.results[0].dob.date;
+                document.getElementById('thumbnail').src = data.results[0].picture.thumbnail;
+                console.log(data);
+                */
+            }
+            })
+            // time to catch any errors if there are any
+            .catch ((error) => {
+        alert('something went wrong with the hamsters');
+        console.log(error);
+    })
+
+}
+
+}
