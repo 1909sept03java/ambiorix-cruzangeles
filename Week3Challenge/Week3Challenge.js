@@ -40,8 +40,9 @@ function getRandomUser(param1) {
             document.getElementById('email'+param1).innerText = "Email: " + data.results[0].email;
             document.getElementById('dob'+param1).innerText = "Age: " + data.results[0].dob.age + ", Date of Birth: " + data.results[0].dob.date;
             document.getElementById('thumbnail'+param1).src = data.results[0].picture.thumbnail;
-            let age = parseInt(data.results[0].dob.age, 10);
-            ageSum = age + ageSum;
+            var age = Number(data.results[0].dob.age, 10);
+            ageSum = ageSum + age;
+            document.getElementById("avgAge").innerText = ageSum/param1;
             console.log(parseInt(data.results[0].dob.age, 10));
             console.log(data);
         })
