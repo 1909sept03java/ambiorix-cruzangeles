@@ -3,6 +3,21 @@ Expense Reimbursement System
 Due 5pm Friday, October 4.
 Presentations Monday, October 7.
 
+*****
+-A main login screen
+should probably take in a username and password
+maybe a FORM??
+maybe a BOOTSTRAP FORM??
+use POST for passwords, not GET
+
+-An Employee can login:
+Database Columns:
+username
+password
+maybe connect to the Employee table and check to see if username and password exists return true
+
+*****
+
 -An Employee can login
 -An Employee can view the Employee Homepage
 -An Employee can logout 
@@ -21,10 +36,10 @@ but be able to operate as Managers as well.
 -A Manager can login
 -A Manager can view the Manager Homepage 
 -A Manager can logout 
--A Manager can approve/deny pending reimbursement requests from the employees they manage
--A Manager can view all pending requests from the employees they manage
+-A Manager can approve/deny pending reimbursement requests from the Employees they manage
+-A Manager can view all pending requests from the Employees they manage
 -A Manager can view images of the receipts from all reimbursement requests
--A Manager can view all resolved requests from all employees and see which manager resolved it
+-A Manager can view all resolved requests from all Employees and see which manager resolved it
 -A Manager can view all Employees and their managers
 -A Manager can view reimbursement requests from a single Employee whom they manage
 
