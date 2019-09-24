@@ -54,3 +54,28 @@ File -> New -> Other -> Server -> Apache -> Tomcat 9 -> local host and Tomcat v9
 go into server.xml -> source -> connector port to 8082
 
 window -> show view -> server -> right click -> start
+
+create a maven project -> WAR packaging -> right click on project -> java ee tools -> generate deployment stub
+
+update pom.xml for java 1.8 and add the javax.servlet dependency
+
+a marker interface has no methods and doesn't define any methods, if something extends the serializable class, then that means that code and or objects can be serialized to go through a network
+
+edit web.xml
+<!-- servlet registration -->
+	<servlet>
+		<!-- Identifier for this servlet within the web container -->
+		<servlet-name>HelloWorldServlet</servlet-name>
+		<!-- Specify the full qualified classname of the servlet class -->
+		<servlet-class>com.revature.servlet.HelloWorldServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HelloWorldServlet</servlet-name>
+		<url-pattern>/hello</url-pattern>
+	</servlet-mapping>
+
+    properties
+    web project settings
+    targeted runtimes -> click tomcat -> apply
+
+create html files in the webapp folder
