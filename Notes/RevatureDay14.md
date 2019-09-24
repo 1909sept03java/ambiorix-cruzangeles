@@ -49,4 +49,8 @@ can also be used to register and map servlets,
 annotation-based application
 instead
 
-File -> New -> Other -> Server -> Apache -> Tomcat 9 -> local host and Tomcat v9.0 Server at localhost ->
+File -> New -> Other -> Server -> Apache -> Tomcat 9 -> local host and Tomcat v9.0 Server at localhost -> find your tomcat directory
+
+go into server.xml -> source -> connector port to 8082
+
+window -> show view -> server -> right click -> start
