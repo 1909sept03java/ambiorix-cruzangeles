@@ -79,3 +79,28 @@ edit web.xml
     targeted runtimes -> click tomcat -> apply
 
 create html files in the webapp folder
+
+1) Client sends HTTP request
+2) web container receives request and generates SrevletRequest and ServletResponse Objects
+3) Container consults the deployment descriptor to map a request to a servlet
+note: if container has not yet handled any requests, no servlets have been instantiated - unless they have the load-on-startup property enabled in their configuration)
+// only if the servlet has not yet been created
+4) The container instantiates requested servlet
+note: thread pool, 200 threads, maintained by thread container
+thread per request
+5) container calls init() lifecycle methods of the servlet to set parameters defined in ServletConfig and ServletContext
+6) container calls service() lifecycle which invokes the request handler
+container class public version from GenericServlet, which calls protected version from HttpServlet
+this is where the request handlers live like doThis doThat etc
+7) request is processed and response returned to client
+successive requests to same servlet invoke service() method again
+8) if container is being shut down or trying to release memory it will call destroy()
+
+public void service()
+
+protected void service()
+
+
+Statefull - keeping track of a "session" between requests
+
+stateless - no session state maintained between requests

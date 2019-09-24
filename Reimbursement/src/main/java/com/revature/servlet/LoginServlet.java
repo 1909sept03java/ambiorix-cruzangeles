@@ -7,16 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.revature.beans.Credentials;
+
 public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 817105812389880890L;
 
-	/*
-	 * Create two methods:
-	 * - a doGet to handle GET requests for our login page
-	 * - a doPost to handle POST requests with credentials
-	 */
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// serve the login.html page as a response
@@ -28,10 +24,13 @@ public class LoginServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// grab credentials from the request - use getParameter for form data
-		String username = req.getParameter("username");
-		String password = req.getParameter("password");
-		System.out.println("username: "+username+" password: "+password);
+		// String username = req.getParameter("username");
+		// String password = req.getParameter("password");
+		// System.out.println("username: "+username+" password: "+password);
 		// if the request was not form data then it can be get using a bunch of other methods
+		Credentials creds = new Credentials();
+		creds.setUsername(req.getParameter("username"));
+		creds.setPassword(req.getParameter("password"));
 	}
 	
 }

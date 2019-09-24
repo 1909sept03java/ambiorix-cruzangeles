@@ -107,3 +107,5 @@ Week2Challenge/src/main/resources/connection.properties
 JDBCBank/src/main/resources/connection.properties
 
 Servers/
+
+.properties
