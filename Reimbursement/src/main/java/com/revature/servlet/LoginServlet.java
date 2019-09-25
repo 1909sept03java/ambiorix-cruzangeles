@@ -8,10 +8,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.revature.beans.Credentials;
+import com.revature.beans.User;
+import com.revature.service.AuthenticationService;
 
 public class LoginServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 817105812389880890L;
+	private AuthenticationService authService = new AuthenticationService();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,6 +34,16 @@ public class LoginServlet extends HttpServlet {
 		Credentials creds = new Credentials();
 		creds.setUsername(req.getParameter("username"));
 		creds.setPassword(req.getParameter("password"));
+		// passing the responsibility for performing auth logic to a service
+		User u = authService.authenticateUser(creds);
+		if (u != null) {
+			// they're real
+		} else {
+			// they're not real
+			// resp.getWriter().write("Invalid Credentials!");
+			// redirect back to login
+			
+		}
 	}
 	
 }

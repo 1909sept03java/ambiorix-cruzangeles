@@ -5,6 +5,7 @@ public class Credentials {
 	public Credentials() {
 		super();
 	}
+	
 	public Credentials(int id, int userId, String username, String password) {
 		super();
 		this.id = id;
@@ -12,34 +13,40 @@ public class Credentials {
 		this.username = username;
 		this.password = password;
 	}
+	
 	private int id;
 	private int userId;
 	private String username;
 	private String password;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public int getUserId() {
 		return userId;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+	
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -50,6 +57,7 @@ public class Credentials {
 		result = prime * result + ((username == null) ? 0 : username.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -75,6 +83,7 @@ public class Credentials {
 			return false;
 		return true;
 	}
+	
 	@Override
 	public String toString() {
 		return "Credentials [id=" + id + ", userId=" + userId + ", username=" + username + ", password=" + password

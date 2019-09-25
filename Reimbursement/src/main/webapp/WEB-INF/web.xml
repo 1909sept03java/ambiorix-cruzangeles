@@ -16,5 +16,16 @@
 		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<!-- Identifier for this servlet within the web container -->
+		<servlet-name>ProfileServlet</servlet-name>
+		<!-- Specify the full qualified classname of the servlet class -->
+		<servlet-class>com.revature.servlet.ProfileServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProfileServlet</servlet-name>
+		<url-pattern>/profile</url-pattern>
+	</servlet-mapping>
 
 </web-app>
