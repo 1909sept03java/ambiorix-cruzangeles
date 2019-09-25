@@ -38,10 +38,13 @@ public class LoginServlet extends HttpServlet {
 		User u = authService.authenticateUser(creds);
 		if (u != null) {
 			// they're real
+			// redirect to their profile
+			resp.sendRedirect("profile");
 		} else {
 			// they're not real
 			// resp.getWriter().write("Invalid Credentials!");
 			// redirect back to login
+			resp.sendRedirect("login");
 			
 		}
 	}
