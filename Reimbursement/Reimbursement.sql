@@ -17,13 +17,14 @@ CREATE TABLE EMPLOYEES (
     EMPLOYEE_ID INTEGER PRIMARY KEY, -- primary key
     EMPLOYEE_USERNAME VARCHAR2(20), -- username login credential
     EMPLOYEE_PASSWORD VARCHAR2(20), -- password login credential
-    EMPLOYEE_EMAIL VARCHAR2(20) -- email for bonus points
+    EMPLOYEE_EMAIL VARCHAR2(20), -- email for bonus points
+    EMPLOYEE_MANAGER_ID INTEGER -- all managers are employees
 );
 /
 
 CREATE TABLE REIMBURSEMENTS (
     REIMBURSEMENT_ID INTEGER PRIMARY KEY, -- primary key
-    REIMBURSEMENT_BALANCE NUMBER(8,2), -- reimbursement amount
+    REIMBURSEMENT_BALANCE NUMBER(6,2), -- reimbursement amount $9,999.99
     REIMBURSEMENT_STATUS CHAR(1) CHECK (REIMBURSEMENT_STATUS IN ('A', 'D', 'P')), -- variable A=Allowed, D=Denied, P=Pending
     EMPLOYEE_ID INTEGER REFERENCES EMPLOYEES(EMPLOYEE_ID) -- foreign key to employees table
 );
