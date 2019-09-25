@@ -16,7 +16,7 @@
 		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<!-- Identifier for this servlet within the web container -->
 		<servlet-name>ProfileServlet</servlet-name>
@@ -27,5 +27,27 @@
 		<servlet-name>ProfileServlet</servlet-name>
 		<url-pattern>/profile</url-pattern>
 	</servlet-mapping>
+
+	<!-- servlet definition -->
+	<servlet>
+		<servlet-name>ErrorHandlerServlet</servlet-name>
+		<servlet-class>com.revature.servlet.ErrorHandlerServlet</servlet-class>
+	</servlet>
+
+	<!-- servlet mappings -->
+	<servlet-mapping>
+		<servlet-name>ErrorHandlerServlet</servlet-name>
+		<url-pattern>/ErrorHandler</url-pattern>
+	</servlet-mapping>
+
+	<!-- error-code related error pages -->
+	<error-page>
+		<error-code>404</error-code>
+		<location>/ErrorHandler</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/ErrorHandler</location>
+	</error-page>
 
 </web-app>
