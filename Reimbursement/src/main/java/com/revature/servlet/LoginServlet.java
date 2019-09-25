@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.revature.beans.Credentials;
 import com.revature.beans.User;
@@ -31,6 +32,10 @@ public class LoginServlet extends HttpServlet {
 		// String password = req.getParameter("password");
 		// System.out.println("username: "+username+" password: "+password);
 		// if the request was not form data then it can be get using a bunch of other methods
+		// check whether a session already exists, and create one if not
+		// overloaded version takes a boolean parameter, if false returns null
+		// if not session exists matching the incomind request's JESSIONID token
+		HttpSession session = req.getSession();
 		Credentials creds = new Credentials();
 		creds.setUsername(req.getParameter("username"));
 		creds.setPassword(req.getParameter("password"));
@@ -38,12 +43,18 @@ public class LoginServlet extends HttpServlet {
 		User u = authService.authenticateUser(creds);
 		if (u != null) {
 			// they're real
+			// set user information as session attributes (not request attributes)
+			session.setAttribute("userId", u.getId());
+			session.setAttribute("firstname", u.getFirstname());
+			session.setAttribute("lastname", u.getLastname());
+			session.setAttribute("problem", null);
 			// redirect to their profile
 			resp.sendRedirect("profile");
 		} else {
 			// they're not real
 			// resp.getWriter().write("Invalid Credentials!");
 			// redirect back to login
+			session.setAttribute("problem", "Invalid Credentials");
 			resp.sendRedirect("login");
 			
 		}
