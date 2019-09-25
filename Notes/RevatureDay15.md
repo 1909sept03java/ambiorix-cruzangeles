@@ -27,3 +27,18 @@ in a servlet application
     -> persistent cookie: sticks around between browser sessions
 
     -> new persistent cookie: lasts for only one browser session
+
+Rest
+Representational State Transfer
+Architectural Style For Web Services
+Web Services: Standard Means of Interoperability beween software applicants on the world wide web
+
+Foy Fielding
+    -> Uniform interface for communication between client and server
+    -> Stateless
+    -> layered -> client is unaware of whether they're communicating with end of server
+    -> Http/s only
+
+    SAFE    IDEMPOTENTS
+GET YES     YES
+POST NO     
