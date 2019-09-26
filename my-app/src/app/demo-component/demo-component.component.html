@@ -1,30 +1,40 @@
-<div>
-        <span>Interpolation:</span> 
-        <br>
-        <p>first name: {{user.firstname}}</p>
-        <p>last name: {{user.lastname}}</p>
-        <p>email: {{user.email}}</p>
-    </div>
+<div id="component-1">
+    <span>RANDOM LIPSUM:</span>
     <br>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque suscipit risus id vestibulum blandit. Nam
+        maximus pharetra tempus. Donec id ligula ipsum. Phasellus eu imperdiet ligula. Pellentesque habitant morbi
+        tristique senectus et netus et malesuada fames ac turpis egestas. Praesent nulla orci, consectetur quis semper
+        sodales, volutpat et est. Maecenas iaculis, risus in ultrices tincidunt, nisi nulla scelerisque leo, at
+        pellentesque diam neque eu urna. Duis tincidunt ipsum nunc, nec interdum dui ultrices eget. Donec viverra lectus
+        quam, ac porttitor sapien fringilla id. Aliquam a magna lobortis, tempus elit eu, mattis orci. Mauris ultrices
+        augue dolor, eget varius ipsum finibus ut. Sed sed massa lacinia, molestie dui eget, finibus quam. Aliquam ipsum
+        purus, sagittis id lacus a, tempor condimentum justo. Pellentesque lacinia ex nibh, nec sollicitudin mi
+        dignissim suscipit. Donec lacinia, est vel pretium ullamcorper, turpis risus ultrices elit, a vulputate orci
+        erat in orci. Vivamus at tortor a eros posuere vehicula.</p>
+    <p>Quisque et viverra elit. Nunc iaculis molestie libero vel hendrerit. Morbi quis sollicitudin metus. Suspendisse
+        eu cursus ligula. Mauris fermentum risus libero, quis pretium elit lobortis vitae. Etiam ut turpis dolor. Nulla
+        eu hendrerit ex. Integer id lacinia diam. Sed vitae dolor ut justo sodales tincidunt. Integer in est sit amet
+        mauris ornare imperdiet at eleifend eros. Proin condimentum sed augue at pellentesque. Nunc mattis, dolor at
+        bibendum vestibulum, urna nunc consequat enim, vel dapibus metus augue vel velit.</p>
+</div>
+<div id="component-2">
+    <p>{{comment}}</p>
+</div>
+<br>
+<!-- need to import FormsModule in app.module.ts for NgModel -->
+<div id="component-3">
+    <span>ENTER YOUR COMMENT:</span>
+    <br>
+    <input [(ngModel)]="comment" placeholder="write your comment here">
+</div>
+<!--
     <div>
-        <span>Event Binding:</span>
-        <p>{{counter}}</p>
-        <button (click)="incrementCounter()">increment</button>
+    <span>Event Binding:</span>
+    <p>{{counter}}</p>
+    <button (click)="incrementCounter()">increment</button>
     </div>
-    <br>
     <div>
         <span>Property Binding:</span>
         <p [ngStyle]="objectStyle" (click)="toggleStyles()">click to toggle styles</p>
     </div>
-    <br>
-    <!-- need to import FormsModule in app.module.ts for NgModel -->
-    <div>
-        <span>Input for Two-Way Binding:</span>
-        <br>
-        <input [(ngModel)]="user.firstname" placeholder="first name">
-        <br>
-        <input [(ngModel)]="user.lastname" placeholder="last name">
-        <br>
-        <input [(ngModel)]="user.email" placeholder="email">
-    </div>
-      
+-->

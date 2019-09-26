@@ -27,23 +27,27 @@ export class DemoComponentComponent implements OnInit {
     margin: '2px'
   };
 
+  comments = {
+    first: 'hello'
+  };
+
   // function invoked in event binding demo
   incrementCounter(): void {
     this.counter++;
   }
 
-  // function invoked in property binding demo
-  toggleStyles(): void {
-    if (this.objectStyle.color === 'red') {
-      this.objectStyle.color = 'blue';
-      this.objectStyle.border = '4px groove purple';
-    } else {
-      this.objectStyle.color = 'red';
-      this.objectStyle.border = '4px solid black';
-    }
+// function invoked in property binding demo
+toggleStyles(): void {
+  if(this.objectStyle.color === 'red') {
+  this.objectStyle.color = 'blue';
+  this.objectStyle.border = '4px groove purple';
+} else {
+  this.objectStyle.color = 'red';
+  this.objectStyle.border = '4px solid black';
+}
   }
 
-  ngOnInit() {
-  }
+ngOnInit() {
+}
 
 }
