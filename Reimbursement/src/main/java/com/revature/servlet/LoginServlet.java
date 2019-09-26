@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.revature.beans.Credentials;
-import com.revature.beans.User;
+import com.revature.beans.Employees;
 import com.revature.service.AuthenticationService;
 
 public class LoginServlet extends HttpServlet {
@@ -40,16 +40,18 @@ public class LoginServlet extends HttpServlet {
 		creds.setUsername(req.getParameter("username"));
 		creds.setPassword(req.getParameter("password"));
 		// passing the responsibility for performing auth logic to a service
-		User u = authService.authenticateUser(creds);
-		if (u != null) {
+		Employees emp = authService.authenticateUser(creds);
+		if (emp != null) {
 			// they're real
+			System.out.println("User exists");
+			System.out.println(emp.toString());
 			// set user information as session attributes (not request attributes)
-			session.setAttribute("userId", u.getId());
-			session.setAttribute("firstname", u.getFirstname());
-			session.setAttribute("lastname", u.getLastname());
-			session.setAttribute("problem", null);
+			//session.setAttribute("userId", emp.getId());
+			//session.setAttribute("firstname", emp.getFirstname());
+			//session.setAttribute("lastname", u.getLastname());
+			//session.setAttribute("problem", null);
 			// redirect to their profile
-			resp.sendRedirect("profile");
+			// resp.sendRedirect("profile");
 		} else {
 			// they're not real
 			// resp.getWriter().write("Invalid Credentials!");
