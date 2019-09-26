@@ -128,4 +128,8 @@ swap out view that reuses content
 -> platform
 -> webpack is used to bundle applications (transpile, minify, aggregate)
 -> testing w/ jasmine, karma, protractor
--> organized into modules ( not the same as modules in ES6/node.js)
+-> organized into modules and components ( not the same as modules in ES6/node.js)
+-> Angular CLI -> install w/ npm
+    ng (best command)
+
+Angular 2,4,5,6,7,8
