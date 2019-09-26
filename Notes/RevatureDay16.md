@@ -133,3 +133,4 @@ swap out view that reuses content
     ng (best command)
 
 Angular 2,4,5,6,7,8
+6,7,8 are still being supported
