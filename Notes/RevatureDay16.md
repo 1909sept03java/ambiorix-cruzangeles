@@ -54,3 +54,78 @@ Free, opensource, and can be used through the command line
 name and version of package
 other packages project depends on
 build instructions
+
+### TypeScript
+
+Programming language which is a superset of ES2015
+Developed by microsoft open-source since 2012
+Designed to make development of large projects easier
+.ts
+Transpile (source to source compile)
+to javascript ES3t
+"Compile-to-js" "targets" javascript
+static typing ("strong typing")
+JS: let x = 5;
+    x = "five";
+TS: let x:number = 5; // :number is type assertion
+    x = "five"; // X NO DOESN'T WORK
+JS: relied on infered type
+TS: declared type
+
+let x; // in TS becomes an infered type called any
+let x:any;
+
+String, number, boolean, object
+
+let x:number[] = ....
+let y:Array<number> = ....
+
+Tuples: Array with predefined structure
+let x: [String, number]
+x = ["hello", 5] // works
+x = [5, "hello"] // DOES NOT work
+
+enum Color {"red","blue"};
+let x:Color = Color.blue;
+
+void, undefined, null, never, any
+
+-> other features
+interfaces, abstract classes, extends, implements
+
+Access modifiers
+piblic
+private
+protected
+
+static
+readonly
+
+Modules
+-> ES6 modules, not angular modules
+module-per-file in JS ES6+
+any classes, variables, functions, etc must have the export keyword
+to be accessible outside the file
+resources from outside file must be imported with import statements
+at the top of the file
+
+### Angular (Open source from google)
+
+framework for building user-facing applications
+
+version history
+upto 1.6: AngularJS
+-> JS
+-> LOOKED LIKE JQUERY
+-> Single page Applications (SPAs)
+single index page that lets you swap out views
+swap out view that reuses content
+-> library
+
+2+: Angular
+-> TS
+-> Runs w/ node
+-> platform
+-> webpack is used to bundle applications (transpile, minify, aggregate)
+-> testing w/ jasmine, karma, protractor
+-> organized into modules ( not the same as modules in ES6/node.js)
