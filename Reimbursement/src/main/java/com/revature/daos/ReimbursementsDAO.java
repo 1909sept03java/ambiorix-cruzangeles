@@ -11,9 +11,9 @@ public interface ReimbursementsDAO {
 	 */
 	
 	public List<Reimbursements> getReimbursements();
-	public Reimbursements getReimbursementsById();
-	public void createReimbursements();
-	public void updateReimbursements();
+	public List<Reimbursements> getReimbursementsByEmployeeId(int employeeId);
+	public void createReimbursements(double reimbursementBalance, int employeeId);
+	public void updateReimbursements(int reimbursementId, String reimbursementStatus);
 	public void deleteReimbursements();
 	
 }

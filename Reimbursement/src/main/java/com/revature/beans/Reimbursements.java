@@ -8,13 +8,13 @@ public class Reimbursements {
 	
 	int reimbursementId;
 	double reimbursementBalance;
-	char reimbursementStatus; // P = pending, D = deny, A = allow
+	String reimbursementStatus; // P = pending, D = deny, A = allow
 	int employeeId;
 	
 	public Reimbursements() {
 		super();
 	}
-	public Reimbursements(int reimbursementId, double reimbursementBalance, char reimbursementStatus, int employeeId) {
+	public Reimbursements(int reimbursementId, double reimbursementBalance, String reimbursementStatus, int employeeId) {
 		super();
 		this.reimbursementId = reimbursementId;
 		this.reimbursementBalance = reimbursementBalance;
@@ -35,7 +35,7 @@ public class Reimbursements {
 		temp = Double.doubleToLongBits(reimbursementBalance);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		result = prime * result + reimbursementId;
-		result = prime * result + reimbursementStatus;
+		result = prime * result + ((reimbursementStatus == null) ? 0 : reimbursementStatus.hashCode());
 		return result;
 	}
 	@Override
@@ -53,7 +53,10 @@ public class Reimbursements {
 			return false;
 		if (reimbursementId != other.reimbursementId)
 			return false;
-		if (reimbursementStatus != other.reimbursementStatus)
+		if (reimbursementStatus == null) {
+			if (other.reimbursementStatus != null)
+				return false;
+		} else if (!reimbursementStatus.equals(other.reimbursementStatus))
 			return false;
 		return true;
 	}
@@ -69,10 +72,10 @@ public class Reimbursements {
 	public void setReimbursementBalance(double reimbursementBalance) {
 		this.reimbursementBalance = reimbursementBalance;
 	}
-	public char getReimbursementStatus() {
+	public String getReimbursementStatus() {
 		return reimbursementStatus;
 	}
-	public void setReimbursementStatus(char reimbursementStatus) {
+	public void setReimbursementStatus(String reimbursementStatus) {
 		this.reimbursementStatus = reimbursementStatus;
 	}
 	public int getEmployeeId() {
