@@ -134,3 +134,14 @@ swap out view that reuses content
 
 Angular 2,4,5,6,7,8
 6,7,8 are still being supported
+
+a Module in Angular is the basic large scale unit of organization
+it holds related components, directives, pipes, and services
+
+@NgModule decorator on a class
+declaration makes it a module
+
+the annotation provides meta-programming
+
+External libraries in Angular are included as modules
+(FormsModule, RouterModule, HttpClientModule)
