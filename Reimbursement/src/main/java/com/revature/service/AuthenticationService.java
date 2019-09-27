@@ -15,7 +15,8 @@ public class AuthenticationService {
 		EmployeesDAOImpl empDAO = new EmployeesDAOImpl();
 		List<Employees> empList = empDAO.getEmployees();
 		for (int i = 0; i < empList.size(); i++) {
-			if (empList.get(i).getEmployeeUsername() == creds.getUsername() && empList.get(i).getEmployeePassword() == creds.getPassword()) {
+			// System.out.println(empList.get(i).getEmployeeUsername());
+			if (empList.get(i).getEmployeeUsername().equals(creds.getUsername()) && empList.get(i).getEmployeePassword().equals(creds.getPassword())) {
 				emp.setEmployeeId(empList.get(i).getEmployeeId());
 				emp.setEmployeeUsername(empList.get(i).getEmployeeUsername());
 				emp.setEmployeePassword(empList.get(i).getEmployeePassword());

@@ -15,9 +15,15 @@ public class ProfileServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession(false);
-		if (session != null && session.getAttribute("userId") != null) {
-			req.getRequestDispatcher("Profile.html").forward(req, resp);
-		} else {
+		if (session != null && session.getAttribute("employeeManagerId").equals(0)) {
+			System.out.println("MANAGER ENTERED");
+			req.getRequestDispatcher("Manager.html").forward(req, resp);
+		} 
+		else if (session != null && !session.getAttribute("employeeManagerId").equals(0)) {
+			System.out.println("EMPLOYEE ENTERED");
+			req.getRequestDispatcher("Employee.html").forward(req, resp);
+		}
+		else {
 			resp.sendRedirect("login");
 		}
 	}

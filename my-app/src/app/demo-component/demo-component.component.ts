@@ -27,7 +27,7 @@ export class DemoComponentComponent implements OnInit {
     margin: '2px'
   };
 
-  comments = {
+  comment = {
     first: 'hello'
   };
 

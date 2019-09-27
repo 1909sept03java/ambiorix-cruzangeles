@@ -43,20 +43,21 @@ public class LoginServlet extends HttpServlet {
 		Employees emp = authService.authenticateUser(creds);
 		if (emp != null) {
 			// they're real
-			System.out.println("User exists");
+			System.out.println("Employee exists");
 			System.out.println(emp.toString());
-			// set user information as session attributes (not request attributes)
-			//session.setAttribute("userId", emp.getId());
-			//session.setAttribute("firstname", emp.getFirstname());
-			//session.setAttribute("lastname", u.getLastname());
-			//session.setAttribute("problem", null);
-			// redirect to their profile
-			// resp.sendRedirect("profile");
+			session.setAttribute("employeeId", emp.getEmployeeId());
+			session.setAttribute("employeeUsername", emp.getEmployeeUsername());
+			session.setAttribute("employeePassword", emp.getEmployeePassword());
+			session.setAttribute("employeeEmail", emp.getEmployeeEmail());
+			session.setAttribute("employeeManagerId", emp.getEmployeeManagerId());
+			// req.getRequestDispatcher("profile").forward(req, resp);
+			resp.sendRedirect("profile");
 		} else {
 			// they're not real
 			// resp.getWriter().write("Invalid Credentials!");
 			// redirect back to login
 			session.setAttribute("problem", "Invalid Credentials");
+			System.out.println("User doesn't exists");
 			resp.sendRedirect("login");
 		}
 	}

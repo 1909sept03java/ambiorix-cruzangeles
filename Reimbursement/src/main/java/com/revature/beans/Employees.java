@@ -26,9 +26,7 @@ public class Employees {
 	}
 	@Override
 	public String toString() {
-		return "Employees [employeeId=" + employeeId + ", employeeUsername=" + employeeUsername + ", employeePassword="
-				+ employeePassword + ", employeeEmail=" + employeeEmail + ", employeeManagerId=" + employeeManagerId
-				+ "]";
+		return "\"employeeId\":"+this.employeeId+",\"employeeUsername\":\""+this.employeeUsername+"\",\"employeePassword\":\""+this.employeePassword+"\",\"employeeEmail\":\""+this.employeeEmail+"\",\"employeeManagerId\":"+this.employeeManagerId;
 	}
 	@Override
 	public int hashCode() {

@@ -1,6 +1,7 @@
 package com.revature.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.beans.User;
+import com.revature.beans.Employees;
 
 // taking the place of a mapping within my web.xml - annotation-based config vs xml config
 @WebServlet("/session")
@@ -25,14 +26,23 @@ public class SessionServlet extends HttpServlet {
 		// grab current session, if it exists, otherwise return null
 		HttpSession session = req.getSession(false);
 		try {
-			// grab session attributes and place them within a user object
-			int userId = Integer.parseInt(session.getAttribute("userId").toString());
-			String firstname = session.getAttribute("firstname").toString();
-			String lastname = session.getAttribute("lastname").toString();
-			User u = new User(userId, firstname, lastname);
-			// use ObjectWrapper (part of the Jackson api) to convert a Java object to a
-			// JSON representation
-			resp.getWriter().write((new ObjectMapper()).writeValueAsString(u));
+			/*
+			 * the following code puts all employees in /session
+			 * EmployeesDAOImpl empDAO = new EmployeesDAOImpl();
+			 * List<Employees> empList = empDAO.getEmployees();
+			 * resp.getWriter().write((new ObjectMapper()).writeValueAsString(empList));
+			 */
+			
+			// the following code just gets the CURRENT USER INFO into the /session tab
+			Employees emp = new Employees();
+			emp.setEmployeeId(Integer.parseInt(session.getAttribute("employeeId").toString()));
+			emp.setEmployeeUsername(session.getAttribute("employeeUsername").toString());
+			emp.setEmployeePassword(session.getAttribute("employeePassword").toString());
+			emp.setEmployeeEmail(session.getAttribute("employeeEmail").toString());
+			emp.setEmployeeManagerId(Integer.parseInt(session.getAttribute("employeeManagerId").toString()));
+			ArrayList<String> arrList = new ArrayList<String>();
+			arrList.add(emp.toString());
+			resp.getWriter().write((new ObjectMapper()).writeValueAsString(arrList));
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.getWriter().write("{\"session\":null}");
