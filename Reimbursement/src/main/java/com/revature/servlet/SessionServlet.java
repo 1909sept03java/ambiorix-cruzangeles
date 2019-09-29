@@ -1,7 +1,7 @@
 package com.revature.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Employees;
+import com.revature.beans.Reimbursements;
+import com.revature.daos.ReimbursementsDAOImpl;
 
 // taking the place of a mapping within my web.xml - annotation-based config vs xml config
 @WebServlet("/session")
@@ -40,9 +42,9 @@ public class SessionServlet extends HttpServlet {
 			emp.setEmployeePassword(session.getAttribute("employeePassword").toString());
 			emp.setEmployeeEmail(session.getAttribute("employeeEmail").toString());
 			emp.setEmployeeManagerId(Integer.parseInt(session.getAttribute("employeeManagerId").toString()));
-			ArrayList<String> arrList = new ArrayList<String>();
-			arrList.add(emp.toString());
-			resp.getWriter().write((new ObjectMapper()).writeValueAsString(arrList));
+			ReimbursementsDAOImpl reimDAO = new ReimbursementsDAOImpl();
+			List<Reimbursements> reimList = reimDAO.getReimbursementsByEmployeeId(emp.getEmployeeId());
+			resp.getWriter().write((new ObjectMapper()).writeValueAsString(emp) + (new ObjectMapper()).writeValueAsString(reimList));
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.getWriter().write("{\"session\":null}");
