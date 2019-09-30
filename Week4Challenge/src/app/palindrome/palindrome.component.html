@@ -1,0 +1,12 @@
+<div>
+    <h2>This is the Palindrome component:</h2>
+    <h3>Input String-</h3>
+    <input [(ngModel)]="inString"><br>
+    <div>You entered: {{inString}}</div>
+    <button (click)="reverseString()">reverse me</button>
+    <h3>Input String Reversed-</h3>
+    <div>{{outString}}</div>
+    <h3>Is it a palindrome?</h3>
+    <button (click)="isPalindrome()">let's check!</button>
+    <div>{{isPali}}</div>
+</div>
