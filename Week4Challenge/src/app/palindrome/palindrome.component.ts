@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Pali } from '../pali';
-import { reverse } from 'dns';
 
 @Component({
   selector: 'app-palindrome',
@@ -32,7 +30,7 @@ export class PalindromeComponent implements OnInit {
 }
 
   isPalindrome() {
-    if (this.inString == this.outString) {
+    if (this.inString === this.outString) {
       this.isPali = true;
     } else {
       this.isPali = false;

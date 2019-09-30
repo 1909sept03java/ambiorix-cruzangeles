@@ -1,19 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Employee is in the house</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Employee is in the house</title>
 </head>
+
 <body>
-    <div>
-        <h1>WELCOME EMPLOYEE</h1>
-    </div>
-    <div>
-    	<form action="logout" method="get">
-		<input type="submit" value="logout"/>
-	</form>
-    </div>
+	<div>
+		<h1 id="welcome"></h1>
+		<h3 id="email"></h3>
+	</div>
+	<div>
+		<h2>Reimbursement Request:</h2>
+		<form action="reimBal" method="post">
+			<input type="text" value="0" name="reimBal">
+		</form>
+	</div>
+	<div>
+		<h2>Reimbursements:</h2>
+		<button id="getInfo">Click me!</button>
+		<br>
+		<div id="reimbursements-pending"></div>
+		<br>
+		<div id="reimbursements-done"></div>
+	</div>
+	<div>
+		<h2>Create new reimbursements:</h2>
+	</div>
+	<div>
+		<form action="logout" method="get">
+			<input type="submit" value="logout" />
+		</form>
+	</div>
 </body>
+
+<script src="Employee.js"></script>
+
 </html>

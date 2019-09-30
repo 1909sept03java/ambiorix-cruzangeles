@@ -16,8 +16,8 @@ import com.revature.beans.Reimbursements;
 import com.revature.daos.ReimbursementsDAOImpl;
 
 // taking the place of a mapping within my web.xml - annotation-based config vs xml config
-@WebServlet("/session")
-public class SessionServlet extends HttpServlet {
+@WebServlet("/reimsession")
+public class ReimServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -1319793763433572026L;
 
@@ -42,7 +42,9 @@ public class SessionServlet extends HttpServlet {
 			emp.setEmployeePassword(session.getAttribute("employeePassword").toString());
 			emp.setEmployeeEmail(session.getAttribute("employeeEmail").toString());
 			emp.setEmployeeManagerId(Integer.parseInt(session.getAttribute("employeeManagerId").toString()));
-			resp.getWriter().write((new ObjectMapper()).writeValueAsString(emp));
+			ReimbursementsDAOImpl reimDAO = new ReimbursementsDAOImpl();
+			List<Reimbursements> reimList = reimDAO.getReimbursementsByEmployeeId(emp.getEmployeeId());
+			resp.getWriter().write((new ObjectMapper()).writeValueAsString(reimList));
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.getWriter().write("{\"session\":null}");
