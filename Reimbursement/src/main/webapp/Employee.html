@@ -14,21 +14,19 @@
 		<h3 id="email"></h3>
 	</div>
 	<div>
-		<h2>Reimbursement Request:</h2>
-		<form action="reimBal" method="post">
+		<h2>Request a Reimbursement:</h2>
+		<form action="createReim" method="POST">
 			<input type="text" value="0" name="reimBal">
+			<input type="submit" value="Create Reim!"/>
 		</form>
 	</div>
 	<div>
 		<h2>Reimbursements:</h2>
-		<button id="getInfo">Click me!</button>
+		<button id="getInfo">View Reimbursements!</button>
 		<br>
 		<div id="reimbursements-pending"></div>
 		<br>
 		<div id="reimbursements-done"></div>
-	</div>
-	<div>
-		<h2>Create new reimbursements:</h2>
 	</div>
 	<div>
 		<form action="logout" method="get">

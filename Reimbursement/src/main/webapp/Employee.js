@@ -35,6 +35,12 @@ function getInfo() {
         // now the data is returned, time to use it
         .then((data) => {
             console.log(data);
+            while (document.getElementById("reimbursements-pending").hasChildNodes()) {
+                document.getElementById("reimbursements-pending").removeChild(document.getElementById("reimbursements-pending").firstChild);
+            }
+            while (document.getElementById("reimbursements-done").hasChildNodes()) {
+                document.getElementById("reimbursements-done").removeChild(document.getElementById("reimbursements-done").firstChild);
+            }
             var headPen = document.createElement("H3");
             var headNote = document.createTextNode("Pending: ")
             headPen.appendChild(headNote);
