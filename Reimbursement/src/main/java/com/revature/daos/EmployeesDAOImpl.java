@@ -81,4 +81,24 @@ public class EmployeesDAOImpl implements EmployeesDAO {
 		return emp;
 	}
 
+	@Override
+	public void updateEmployees(int employeeId, String username, String password) {
+
+		try (Connection con = ConnectionService.getConnection();) {
+			String sql = "UPDATE EMPLOYEES SET EMPLOYEE_USERNAME = ?, EMPLOYEE_PASSWORD = ? WHERE EMPLOYEE_ID = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ps.setInt(3, employeeId);
+			ps.executeUpdate();
+			
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+	}
+
 }

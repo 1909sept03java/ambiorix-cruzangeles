@@ -11,7 +11,24 @@
 <body>
 	<div>
 		<h1 id="welcome"></h1>
-		<h3 id="email"></h3>
+	</div>
+	<div>
+		<h3 id="info"></h3>
+		<h3 id="employeeId"></h3>
+		<h3 id="employeeEmail"></h3>
+		<h3 id="employeeUsername"></h3>
+		<h3 id="employeePassword"></h3>
+		<button id="getEmployeeInfo">View Information!</button>
+	</div>
+	<div>
+		<h3>Updating Credentials:</h3>
+		<form action="updateCreds" method="POST">
+			<input type="text" placeholder="username" name="username"/>
+			<input type="password" name="password"/>
+			<br>
+			<input type="submit" value="Update Creds"/>
+		</form>
+		
 	</div>
 	<div>
 		<h2>Request a Reimbursement:</h2>
