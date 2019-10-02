@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 		Employees emp = authService.authenticateUser(creds);
 		// they're real
 		if (emp != null) {
-			System.out.println("Employee exists");
+			System.out.println("USER EXISTS");
 			// System.out.println(emp.toString());
 			// storing the current employees info as a session so it can be used everywhere
 			session.setAttribute("employeeId", emp.getEmployeeId());

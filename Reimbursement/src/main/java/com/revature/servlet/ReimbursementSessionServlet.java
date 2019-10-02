@@ -16,8 +16,8 @@ import com.revature.beans.Reimbursements;
 import com.revature.daos.ReimbursementsDAOImpl;
 
 // taking the place of a mapping within my web.xml - annotation-based config vs xml config
-@WebServlet("/reimsession")
-public class ReimServlet extends HttpServlet {
+@WebServlet("/reimbursementSession")
+public class ReimbursementSessionServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -1319793763433572026L;
 

@@ -22,8 +22,8 @@ window.onload = function () {
 
 }
 
-let empUrl = 'http://localhost:8082/Reimbursement/session';
-let reimUrl = 'http://localhost:8082/Reimbursement/reimsession';
+let empUrl = 'http://localhost:8082/Reimbursement/employeeSession';
+let reimUrl = 'http://localhost:8082/Reimbursement/reimbursementSession';
 
 function getInfo() {
     fetch(reimUrl, { method: "GET", headers: { "Accept": "application/json" } })

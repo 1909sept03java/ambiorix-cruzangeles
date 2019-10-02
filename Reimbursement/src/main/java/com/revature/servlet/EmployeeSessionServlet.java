@@ -13,8 +13,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Employees;
 
 // taking the place of a mapping within my web.xml - annotation-based config vs xml config
-@WebServlet("/session")
-public class SessionServlet extends HttpServlet {
+@WebServlet("/employeeSession")
+public class EmployeeSessionServlet extends HttpServlet {
 
 	private static final long serialVersionUID = -1319793763433572026L;
 
