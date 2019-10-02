@@ -4,6 +4,11 @@
 	text-align: center;
 }
 
+.error {
+	width: 450px;
+	margin: 0 auto;
+	text-align: center;
+}
 body {
 	background-color: lightgrey;
 }
