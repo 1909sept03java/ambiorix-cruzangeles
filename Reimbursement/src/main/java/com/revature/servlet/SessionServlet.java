@@ -1,7 +1,6 @@
 package com.revature.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,8 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Employees;
-import com.revature.beans.Reimbursements;
-import com.revature.daos.ReimbursementsDAOImpl;
 
 // taking the place of a mapping within my web.xml - annotation-based config vs xml config
 @WebServlet("/session")

@@ -66,3 +66,39 @@ create a hibernate.cfg.xml
 	</session-factory>
 </hibernate-configuration>
 
+create system environment variables with url, username, password
+access them in the connectionUtil
+
+Hibernate Object States
+
+Decribe relationship between an object and a session
+
+session value = stores objects which represent DB enteties
+
+s.persist(flashcard)
+// hiberate assigns primary key
+// execute query for inserting
+// flashcard is now "persistent"
+s.close();
+// flashcard is now detached
+//
+
+persistent means that it is associated with an active open session
+object is cached in the session scope
+automatic "dirty checking" is when hibernate updates your session
+based on what it sees from the database
+
+NOTE: Many session methods can make an object persistent, this was just a convenient example
+
+Transient state until PERSISTS state kicks in, this means the object is not attached to the session
+and never has been (not same as transient keyword)
+
+Detached -> object that was persisted in a session that was then closed
+
+Persistent Context -> Session
+Persistent Identity -> Primary Key
+
+LOOKUP AMAZON WEB SERVICES STUFF
+EC2
+AM1
+EBS

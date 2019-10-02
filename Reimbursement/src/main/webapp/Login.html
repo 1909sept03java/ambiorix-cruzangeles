@@ -1,22 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 
+<!-- BY AMBIORIX CRUZ ANGELES -->
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Welcome!</title>
+	<!-- BootstrapCDN stylesheet -->
+	<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+	<link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
-    <div id="login-div">
-        <form action="login" method="POST">
-            <h1>Please Login</h1>
-            <input type="text" name="username" placeholder="username"><br>
-            <input type="password" name="password" placeholder="password"><br>
-            <input type="submit" value="login">
-        </form>
-    </div>
+<body class="text-center">
+	<!-- Signin Template from Bootstrap -->
+	<form class="form-signin center" action="login" method="POST">
+	 	<h1 class="h3 mb-3 font-weight-normal">Welcome to Rex's Reimbursement Application!</h1>
+		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+		<label for="inputUsername" class="sr-only">Username</label>
+		<input type="text" id="inputUsername" class="form-control rhaxx" placeholder="Username" name="username" required>
+		<label for="inputPassword" class="sr-only">Password</label>
+		<input type="password" id="inputPassword" class="form-control rhaxx" placeholder="Password" name="password" required>
+		<button class="btn btn-lg btn-primary btn-block rhaxx" type="submit">Sign in</button>
+		<p class="mt-5 mb-3 text-muted">© rex was here </p>
+	</form>
 </body>
+
+<!-- BY AMBIORIX CRUZ ANGELES -->
 
 </html>

@@ -1,0 +1,14 @@
+.rhaxx {
+	width: 300px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+body {
+	background-color: lightgrey;
+}
+
+.center {
+	position: relative;
+	top: 10em;
+}
