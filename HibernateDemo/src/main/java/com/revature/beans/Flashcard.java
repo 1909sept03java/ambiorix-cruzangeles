@@ -1,45 +1,35 @@
 package com.revature.beans;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="FLASHCARD")
+@Table(name = "FLASHCARD")
 public class Flashcard {
-	
-	@Id // indicates that this is the primary key! ("persistence identity" of Flashcard)
-	@GeneratedValue(strategy=GenerationType.AUTO, generator="flashcardSequence")
-	@SequenceGenerator(allocationSize=1, name="flashcardSequence", sequenceName="FLASCARD_SEQUENCE_PK")
-	@Column(name="FLASHCARD_ID")
+
 	private int id;
-	// don't strictly need these unless you want to customize your column definitions
-	@Column(name="FLASHCARD_QUESTION")
 	private String question;
-	@Column(name="FLASHCARD_ANSWER")
 	private String answer;
 	
-	// constructors
-	public Flashcard() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public Flashcard(String question, String answer) {
-		super();
-		this.question = question;
-		this.answer = answer;
-	}
-	public Flashcard(int id, String question, String answer) {
-		super();
-		this.id = id;
-		this.question = question;
-		this.answer = answer;
-	}
+	private Set<StudySet> studySets; // many flashcard for many study sets
 	
+	@Id // indicates that this is the primary key! ("persistence identity" of Flashcard)
+	@Column(name = "FLASHCARD_ID")
+	// SEQUENCE
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "flashcardSequence")
+	// TRIGGER
+	@SequenceGenerator(allocationSize = 1, name = "flashcardSequence", sequenceName = "FLASCARD_SEQUENCE_PK")
 	public int getId() {
 		return id;
 	}
@@ -58,41 +48,25 @@ public class Flashcard {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((answer == null) ? 0 : answer.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((question == null) ? 0 : question.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Flashcard other = (Flashcard) obj;
-		if (answer == null) {
-			if (other.answer != null)
-				return false;
-		} else if (!answer.equals(other.answer))
-			return false;
-		if (id != other.id)
-			return false;
-		if (question == null) {
-			if (other.question != null)
-				return false;
-		} else if (!question.equals(other.question))
-			return false;
-		return true;
-	}
-	@Override
-	public String toString() {
-		return "Flashcard [id=" + id + ", question=" + question + ", answer=" + answer + "]";
-	}
 
+	
+	
+	public Flashcard(String question, String answer) {
+		super();
+		this.question = question;
+		this.answer = answer;
+	}
+	
+	
+	
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "FLASHCARD_STUDY_SET", joinColumns = @JoinColumn(name = "FLASHCARD_ID"), inverseJoinColumns = @JoinColumn(name = "STUDY_SET_ID"))
+	public Set<StudySet> getStudySets() {
+		return studySets;
+	}
+	public void setStudySets(Set<StudySet> studySets) {
+		this.studySets = studySets;
+	}
+	
 }
