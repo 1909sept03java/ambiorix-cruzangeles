@@ -47,3 +47,10 @@ merge(Object o)
 finds or creates ersistent version of o
 copy values from o into persistent object
 let automatic dirty checking do the rest
+
+update(Object o)
+makes detached object persistent
+throws exception if passed a transient object or if a persistent version of object
+
+saveOrUpdate(object o)
+make an ubject which is transient or detached, persistent
