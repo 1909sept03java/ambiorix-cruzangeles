@@ -1,19 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- BY AMBIORIX CRUZ ANGELES -->
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Manager is in the house</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Manager is in the house</title>
+<!-- BootstrapCDN stylesheet -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <div>
-        <h1>WELCOME MANAGER</h1>
-    </div>
-    <div>
-    	<form action="logout" method="get">
-		<input type="submit" value="logout"/>
-	</form>
-    </div>
+	<div>
+		<h1 id="welcome"></h1>
+	</div>
+	<div>
+		<h3 id="info"></h3>
+		<h3 id="employeeId"></h3>
+		<h3 id="employeeEmail"></h3>
+		<h3 id="employeeUsername"></h3>
+		<h3 id="employeePassword"></h3>
+		<button id="getEmployeeInfo">View Information!</button>
+	</div>
+	<div>
+		<h3>Updating Credentials:</h3>
+		<form action="updateCreds" method="POST">
+			<input type="text" placeholder="username" name="username" /> <input
+				type="password" name="password" /> <br> <input type="submit"
+				value="Update Creds" />
+		</form>
+	</div>
+	<div>
+		<h2>Request a Reimbursement:</h2>
+		<form action="createReim" method="POST">
+			<input type="text" value="0" name="reimBal"> <input
+				type="submit" value="Create Reim!" />
+		</form>
+	</div>
+	<div>
+		<h2>Reimbursements:</h2>
+		<button id="getInfo">View Reimbursements!</button>
+		<br>
+		<div id="reimbursements-pending"></div>
+		<br>
+		<div id="reimbursements-done"></div>
+	</div>
+	<div>
+		<h2>Approve/Deny Reimbursements:</h2>
+		<button id="getAllApproveDeny">Approve/Deny Requests!</button>
+		<br>
+		<div id="allApproveDeny"></div>
+	</div>
+	<div>
+		<h2>All Pending Requests:</h2>
+		<button id="getAllPending">View All Pending Requests!</button>
+		<br>
+		<div id="allPending"></div>
+	</div>
+	<div>
+		<h2>All Resolved Requests:</h2>
+		<button id="getAllResolved">View All Resolved Requests!</button>
+		<br>
+		<div id="allResolved"></div>
+	</div>
+	<div>
+		<h2>View All Employees:</h2>
+		<button id="getAllEmployees">View All Employees!</button>
+		<br>
+		<div id="allEmployees"></div>
+	</div>
+	<div>
+		<form action="logout" method="get">
+			<input type="submit" value="logout" />
+		</form>
+	</div>
+
 </body>
+
+<script src="Manager.js"></script>
+
+<!-- BY AMBIORIX CRUZ ANGELES -->
+
 </html>

@@ -21,7 +21,6 @@ public class LogoutServlet extends HttpServlet {
 			session.invalidate();
 		}
 		// redirect back to login
-		System.out.println("User logged out");
 		response.sendRedirect("login");
 	}
 

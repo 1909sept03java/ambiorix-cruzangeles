@@ -119,4 +119,55 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 
 	}
 
+	public List<Reimbursements> getAllPending() {
+		List<Reimbursements> reimList = new ArrayList<Reimbursements>();
+		try (Connection con = ConnectionService.getConnection();) {
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE REIMBURSEMENT_STATUS = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, "P");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int reimbursementId = rs.getInt("REIMBURSEMENT_ID");
+				double reimbursementBalance = rs.getDouble("REIMBURSEMENT_BALANCE");
+				String reimbursementStatus = rs.getString("REIMBURSEMENT_STATUS"); // P = pending, D = deny, A = allow
+				int employeeId = rs.getInt("EMPLOYEE_ID");
+				reimList.add(
+						new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return reimList;
+	}
+
+	public List<Reimbursements> getAllResolved() {
+		List<Reimbursements> reimList = new ArrayList<Reimbursements>();
+		try (Connection con = ConnectionService.getConnection();) {
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE REIMBURSEMENT_STATUS = ? OR REIMBURSEMENT_STATUS = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, "A");
+			ps.setString(2, "D");
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int reimbursementId = rs.getInt("REIMBURSEMENT_ID");
+				double reimbursementBalance = rs.getDouble("REIMBURSEMENT_BALANCE");
+				String reimbursementStatus = rs.getString("REIMBURSEMENT_STATUS"); // P = pending, D = deny, A = allow
+				int employeeId = rs.getInt("EMPLOYEE_ID");
+				reimList.add(
+						new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return reimList;
+	}
+
 }

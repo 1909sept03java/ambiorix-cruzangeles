@@ -15,5 +15,7 @@ public interface ReimbursementsDAO {
 	public void createReimbursements(double reimbursementBalance, int employeeId);
 	public void updateReimbursements(int reimbursementId, String reimbursementStatus);
 	public void deleteReimbursements();
+	public List<Reimbursements> getAllPending();
+	public List<Reimbursements> getAllResolved();
 	
 }
