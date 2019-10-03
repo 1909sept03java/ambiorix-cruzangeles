@@ -28,16 +28,10 @@ public class ReimbursementSessionServlet extends HttpServlet {
 		// grab current session, if it exists, otherwise return null
 		HttpSession session = req.getSession(false);
 		try {
-			
 			// the following code just gets the CURRENT USER INFO into the /session tab
-			Employees emp = new Employees();
-			emp.setEmployeeId(Integer.parseInt(session.getAttribute("employeeId").toString()));
-			emp.setEmployeeUsername(session.getAttribute("employeeUsername").toString());
-			emp.setEmployeePassword(session.getAttribute("employeePassword").toString());
-			emp.setEmployeeEmail(session.getAttribute("employeeEmail").toString());
-			emp.setEmployeeManagerId(Integer.parseInt(session.getAttribute("employeeManagerId").toString()));
+			int empId = Integer.parseInt(session.getAttribute("employeeId").toString());
 			ReimbursementsDAOImpl reimDAO = new ReimbursementsDAOImpl();
-			List<Reimbursements> reimList = reimDAO.getReimbursementsByEmployeeId(emp.getEmployeeId());
+			List<Reimbursements> reimList = reimDAO.getReimbursementsByEmployeeId(empId);
 			resp.getWriter().write((new ObjectMapper()).writeValueAsString(reimList));
 		} catch (Exception e) {
 			e.printStackTrace();

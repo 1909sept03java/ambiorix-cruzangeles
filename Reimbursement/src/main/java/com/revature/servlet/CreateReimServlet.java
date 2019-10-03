@@ -25,8 +25,6 @@ public class CreateReimServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession(false);
 		ReimbursementsDAOImpl reim = new ReimbursementsDAOImpl();
-		System.out.println(Double.parseDouble(req.getParameter("reimBal")));
-		System.out.println(Integer.parseInt(session.getAttribute("employeeId").toString()));
 		reim.createReimbursements(Double.parseDouble(req.getParameter("reimBal")), Integer.parseInt(session.getAttribute("employeeId").toString()));
 		if (session != null && session.getAttribute("employeeManagerId").equals(0)) {
 			System.out.println("MANAGER ENTERED");

@@ -25,13 +25,6 @@ public class EmployeeSessionServlet extends HttpServlet {
 		// grab current session, if it exists, otherwise return null
 		HttpSession session = req.getSession(false);
 		try {
-			/*
-			 * the following code puts all employees in /session
-			 * EmployeesDAOImpl empDAO = new EmployeesDAOImpl();
-			 * List<Employees> empList = empDAO.getEmployees();
-			 * resp.getWriter().write((new ObjectMapper()).writeValueAsString(empList));
-			 */
-			
 			// the following code just gets the CURRENT USER INFO into the /session tab
 			Employees emp = new Employees();
 			emp.setEmployeeId(Integer.parseInt(session.getAttribute("employeeId").toString()));
