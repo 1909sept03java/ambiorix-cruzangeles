@@ -31,6 +31,7 @@ public class EmployeeSessionServlet extends HttpServlet {
 			emp.setEmployeeUsername(session.getAttribute("employeeUsername").toString());
 			emp.setEmployeePassword(session.getAttribute("employeePassword").toString());
 			emp.setEmployeeEmail(session.getAttribute("employeeEmail").toString());
+			emp.setEmployeeManager(session.getAttribute("employeeManager").toString());
 			emp.setEmployeeManagerId(Integer.parseInt(session.getAttribute("employeeManagerId").toString()));
 			resp.getWriter().write((new ObjectMapper()).writeValueAsString(emp));
 		} catch (Exception e) {

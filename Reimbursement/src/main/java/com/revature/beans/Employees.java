@@ -6,6 +6,7 @@ public class Employees {
 	String employeeUsername;
 	String employeePassword;
 	String employeeEmail;
+	String employeeManager;
 	int employeeManagerId;
 
 	// getters and setters
@@ -41,6 +42,14 @@ public class Employees {
 		this.employeeEmail = employeeEmail;
 	}
 
+	public String getEmployeeManager() {
+		return employeeManager;
+	}
+
+	public void setEmployeeManager(String employeeManager) {
+		this.employeeManager = employeeManager;
+	}
+
 	public int getEmployeeManagerId() {
 		return employeeManagerId;
 	}
@@ -56,6 +65,7 @@ public class Employees {
 		int result = 1;
 		result = prime * result + ((employeeEmail == null) ? 0 : employeeEmail.hashCode());
 		result = prime * result + employeeId;
+		result = prime * result + ((employeeManager == null) ? 0 : employeeManager.hashCode());
 		result = prime * result + employeeManagerId;
 		result = prime * result + ((employeePassword == null) ? 0 : employeePassword.hashCode());
 		result = prime * result + ((employeeUsername == null) ? 0 : employeeUsername.hashCode());
@@ -78,6 +88,11 @@ public class Employees {
 			return false;
 		if (employeeId != other.employeeId)
 			return false;
+		if (employeeManager == null) {
+			if (other.employeeManager != null)
+				return false;
+		} else if (!employeeManager.equals(other.employeeManager))
+			return false;
 		if (employeeManagerId != other.employeeManagerId)
 			return false;
 		if (employeePassword == null) {
@@ -97,18 +112,19 @@ public class Employees {
 	@Override
 	public String toString() {
 		return "Employees [employeeId=" + employeeId + ", employeeUsername=" + employeeUsername + ", employeePassword="
-				+ employeePassword + ", employeeEmail=" + employeeEmail + ", employeeManagerId=" + employeeManagerId
-				+ "]";
+				+ employeePassword + ", employeeEmail=" + employeeEmail + ", employeeManager=" + employeeManager
+				+ ", employeeManagerId=" + employeeManagerId + "]";
 	}
-
+	
 	// constructors
 	public Employees(int employeeId, String employeeUsername, String employeePassword, String employeeEmail,
-			int employeeManagerId) {
+			String employeeManager, int employeeManagerId) {
 		super();
 		this.employeeId = employeeId;
 		this.employeeUsername = employeeUsername;
 		this.employeePassword = employeePassword;
 		this.employeeEmail = employeeEmail;
+		this.employeeManager = employeeManager;
 		this.employeeManagerId = employeeManagerId;
 	}
 
@@ -116,4 +132,5 @@ public class Employees {
 		super();
 	}
 
+	
 }

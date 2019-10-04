@@ -64,12 +64,22 @@ function getInfo() {
                 var reimStat = document.createTextNode("Reimbursement Status: " + data[i].reimbursementStatus)
                 node2.appendChild(reimStat);
 
-                var node3 = document.createElement("BR");
+                var node3 = document.createElement("DIV");
+                var empId = document.createTextNode("EmployeeId: " + data[i].employeeId);
+                node3.appendChild(empId);
+                
+                var node4 = document.createElement("DIV");
+                var empManId = document.createTextNode("EmployeeManagerId: " + data[i].employeeManagerId);
+                node4.appendChild(empManId);
+                
+                var nodeBr = document.createElement("BR");
                 
                 main.appendChild(node);
                 main.appendChild(node1);
                 main.appendChild(node2);
                 main.appendChild(node3);
+                main.appendChild(node4);
+                main.appendChild(nodeBr);
 
                 if (data[i].reimbursementStatus == 'P') {
                     document.getElementById("reimbursements-pending").appendChild(main);
@@ -100,6 +110,8 @@ function getEmployeeInfo() {
             document.getElementById("employeeEmail").innerText = "Email: " + data.employeeEmail;
             document.getElementById("employeeUsername").innerText = "Username: " + data.employeeUsername;
             document.getElementById("employeePassword").innerText = "Password: " + data.employeePassword;
+            document.getElementById("employeeManager").innerText = "isManager: " + data.employeeManager;
+            document.getElementById("employeeManagerId").innerText = "ManagerId: " + data.employeeManagerId;
         })
         // catching an error
         .catch((error) => {

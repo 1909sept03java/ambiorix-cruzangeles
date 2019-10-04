@@ -8,11 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Employees;
 import com.revature.daos.EmployeesDAOImpl;
+import com.revature.service.DAOService;
 
 @WebServlet("/getAllEmployees")
 public class GetAllEmployeesServlet extends HttpServlet {
@@ -22,8 +22,7 @@ public class GetAllEmployeesServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			EmployeesDAOImpl empDAO = new EmployeesDAOImpl();
-			List<Employees> empList = empDAO.getEmployees();
+			List<Employees> empList = DAOService.getEmployees();
 			resp.getWriter().write((new ObjectMapper()).writeValueAsString(empList));
 		} catch (Exception e) {
 			e.printStackTrace();

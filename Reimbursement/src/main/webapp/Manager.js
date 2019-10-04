@@ -31,6 +31,7 @@ let reimUrl = 'http://localhost:8082/Reimbursement/reimbursementSession';
 let getAllEmployeesUrl = 'http://localhost:8082/Reimbursement/getAllEmployees';
 let getAllPendingUrl = 'http://localhost:8082/Reimbursement/getAllPending';
 let getAllResolvedUrl = 'http://localhost:8082/Reimbursement/getAllResolved';
+let manReimApproveDeny = 'http://localhost:8082/Reimbursement//manReimApproveDeny';
 
 function getInfo() {
     fetch(reimUrl, { method: "GET", headers: { "Accept": "application/json" } })
@@ -71,12 +72,23 @@ function getInfo() {
                 var reimStat = document.createTextNode("Reimbursement Status: " + data[i].reimbursementStatus)
                 node2.appendChild(reimStat);
 
-                var node3 = document.createElement("BR");
+                var node3 = document.createElement("DIV");
+                var empId = document.createTextNode("EmployeeId: " + data[i].employeeId);
+                node3.appendChild(empId);
+                
+                var node4 = document.createElement("DIV");
+                var empManId = document.createTextNode("EmployeeManagerId: " + data[i].employeeManagerId);
+                node4.appendChild(empManId);
+                
+                var nodeBr = document.createElement("BR");
                 
                 main.appendChild(node);
                 main.appendChild(node1);
                 main.appendChild(node2);
                 main.appendChild(node3);
+                main.appendChild(node3);
+                main.appendChild(node4);
+                main.appendChild(nodeBr);
 
                 if (data[i].reimbursementStatus == 'P') {
                     document.getElementById("reimbursements-pending").appendChild(main);
@@ -107,6 +119,8 @@ function getEmployeeInfo() {
             document.getElementById("employeeEmail").innerText = "Email: " + data.employeeEmail;
             document.getElementById("employeeUsername").innerText = "Username: " + data.employeeUsername;
             document.getElementById("employeePassword").innerText = "Password: " + data.employeePassword;
+            document.getElementById("employeeManager").innerText = "isManager: " + data.employeeManager;
+            document.getElementById("employeeManagerId").innerText = "ManagerId: " + data.employeeManagerId;
         })
         // catching an error
         .catch((error) => {
@@ -145,8 +159,12 @@ function getAllEmployees() {
                 node3.appendChild(empEmail);
 
                 var node4 = document.createElement("DIV");
+                var empManager = document.createTextNode("isManager: " + data[i].employeeManager);
+                node4.appendChild(empManager);
+                
+                var node5 = document.createElement("DIV");
                 var empManagerId = document.createTextNode("Manager ID: " + data[i].employeeManagerId);
-                node4.appendChild(empManagerId);
+                node5.appendChild(empManagerId);
                 
                 var nodeBr = document.createElement("BR");
                 
@@ -155,6 +173,7 @@ function getAllEmployees() {
                 main.appendChild(node2);
                 main.appendChild(node3);
                 main.appendChild(node4);
+                main.appendChild(node5);
                 main.appendChild(nodeBr);
                 
                 document.getElementById("allEmployees").appendChild(main);
@@ -195,6 +214,10 @@ function getAllPending() {
                 var node3 = document.createElement("DIV");
                 var empId = document.createTextNode("Employee ID: " + data[i].employeeId);
                 node3.appendChild(empId);
+                
+                var node4 = document.createElement("DIV");
+                var empManagerId = document.createTextNode("Employee Manager ID: " + data[i].employeeManagerId);
+                node4.appendChild(empManagerId);
 
                 var nodeBr = document.createElement("BR");
                 
@@ -202,6 +225,7 @@ function getAllPending() {
                 main.appendChild(node1);
                 main.appendChild(node2);
                 main.appendChild(node3);
+                main.appendChild(node4);
                 main.appendChild(nodeBr);
                 
                 document.getElementById("allPending").appendChild(main);
@@ -243,12 +267,17 @@ function getAllResolved() {
                 var empId = document.createTextNode("Employee ID: " + data[i].employeeId);
                 node3.appendChild(empId);
                 
+                var node4 = document.createElement("DIV");
+                var empManagerId = document.createTextNode("Employee Manager ID: " + data[i].employeeManagerId);
+                node4.appendChild(empManagerId);
+                
                 var nodeBr = document.createElement("BR");
                 
                 main.appendChild(node);
                 main.appendChild(node1);
                 main.appendChild(node2);
                 main.appendChild(node3);
+                main.appendChild(node4);
                 main.appendChild(nodeBr);
                 
                 document.getElementById("allResolved").appendChild(main);
@@ -262,7 +291,7 @@ function getAllResolved() {
 }
 
 function getAllApproveDeny() {
-    fetch(getAllPendingUrl, { method: "GET", headers: { "Accept": "application/json" } })
+    fetch(manReimApproveDeny, { method: "GET", headers: { "Accept": "application/json" } })
         // next is what occurs when the response returns
         .then((response) => {
             let data = response.json();
@@ -289,6 +318,10 @@ function getAllApproveDeny() {
                 var node3 = document.createElement("DIV");
                 var empId = document.createTextNode("Employee ID: " + data[i].employeeId);
                 node3.appendChild(empId);
+                
+                var node4 = document.createElement("DIV");
+                var empManagerId = document.createTextNode("Employee Manager ID: " + data[i].employeeManagerId);
+                node4.appendChild(empManagerId);
 
                 var formNode = document.createElement("FORM");
                 formNode.setAttribute("action", "butt");
@@ -329,18 +362,6 @@ function getAllApproveDeny() {
                 submitNode2.setAttribute("type", "submit");
                 submitNode2.setAttribute("value", "APPROVE");
                 formNode2.appendChild(submitNode2)
-
-                /*
-                var node4 = document.createElement("BUTTON");
-                node4.setAttribute("id", "buttonDeny");
-                var butDeny = document.createTextNode("Deny");
-                node4.appendChild(butDeny);
-                
-                var node5 = document.createElement("BUTTON");
-                node5.setAttribute("id", "buttonApprove");
-                var butApprove = document.createTextNode("Approve");
-                node5.appendChild(butApprove);
-                */
                 
                 var nodeBr = document.createElement("BR");
                 
@@ -348,12 +369,9 @@ function getAllApproveDeny() {
                 main.appendChild(node1);
                 main.appendChild(node2);
                 main.appendChild(node3);
+                main.appendChild(node4);
                 main.appendChild(formNode);
                 main.appendChild(formNode2);
-                /*
-                main.appendChild(node4);
-                main.appendChild(node5);
-              */
                 main.appendChild(nodeBr);
                 
                 document.getElementById("allApproveDeny").appendChild(main);

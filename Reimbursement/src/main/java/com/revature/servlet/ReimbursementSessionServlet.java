@@ -11,9 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.revature.beans.Employees;
 import com.revature.beans.Reimbursements;
-import com.revature.daos.ReimbursementsDAOImpl;
+import com.revature.service.DAOService;
 
 // taking the place of a mapping within my web.xml - annotation-based config vs xml config
 @WebServlet("/reimbursementSession")
@@ -30,8 +29,7 @@ public class ReimbursementSessionServlet extends HttpServlet {
 		try {
 			// the following code just gets the CURRENT USER INFO into the /session tab
 			int empId = Integer.parseInt(session.getAttribute("employeeId").toString());
-			ReimbursementsDAOImpl reimDAO = new ReimbursementsDAOImpl();
-			List<Reimbursements> reimList = reimDAO.getReimbursementsByEmployeeId(empId);
+			List<Reimbursements> reimList = DAOService.getReimbursementsByEmployeeId(empId);
 			resp.getWriter().write((new ObjectMapper()).writeValueAsString(reimList));
 		} catch (Exception e) {
 			e.printStackTrace();

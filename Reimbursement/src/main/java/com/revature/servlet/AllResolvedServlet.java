@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beans.Reimbursements;
-import com.revature.daos.ReimbursementsDAOImpl;
+import com.revature.service.DAOService;
 
 @WebServlet("/getAllResolved")
 public class AllResolvedServlet extends HttpServlet {
@@ -21,8 +21,7 @@ public class AllResolvedServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			ReimbursementsDAOImpl reimDAO = new ReimbursementsDAOImpl();
-			List<Reimbursements> reimList = reimDAO.getAllResolved();
+			List<Reimbursements> reimList = DAOService.getAllResolved();
 			resp.getWriter().write((new ObjectMapper()).writeValueAsString(reimList));
 		} catch (Exception e) {
 			e.printStackTrace();

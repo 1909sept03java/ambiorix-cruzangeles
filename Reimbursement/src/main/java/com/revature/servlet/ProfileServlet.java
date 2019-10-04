@@ -18,13 +18,13 @@ public class ProfileServlet extends HttpServlet {
 		HttpSession session = req.getSession(false);
 		// managers are determined by having an employeeManagerId of 0
 		// sending current authenticated user to either manager or employee pages
-		if (session.getAttribute("employeeManagerId").equals(0)) {
+		if (session.getAttribute("employeeManager").equals("Y")) {
 			System.out.println("MANAGER ENTERED");
 			req.getRequestDispatcher("Manager.html").forward(req, resp);
 		} else {
 			System.out.println("EMPLOYEE ENTERED");
 			req.getRequestDispatcher("Employee.html").forward(req, resp);
-		} 
+		}
 	}
 
 	@Override

@@ -35,9 +35,10 @@ public class EmployeesDAOImpl implements EmployeesDAO {
 				String employeeUsername = rs.getString("EMPLOYEE_USERNAME");
 				String employeePassword = rs.getString("EMPLOYEE_PASSWORD");
 				String employeeEmail = rs.getString("EMPLOYEE_EMAIL");
+				String employeeManager = rs.getString("EMPLOYEE_MANAGER");
 				int employeeManagerId = rs.getInt("EMPLOYEE_MANAGER_ID");
 				// pushing that employee into the list of employee's
-				empList.add(new Employees(employeeId, employeeUsername, employeePassword, employeeEmail,
+				empList.add(new Employees(employeeId, employeeUsername, employeePassword, employeeEmail, employeeManager,
 						employeeManagerId));
 			}
 		} catch (SQLException e) {
@@ -75,6 +76,7 @@ public class EmployeesDAOImpl implements EmployeesDAO {
 				emp.setEmployeeUsername(rs.getString("EMPLOYEE_USERNAME"));
 				emp.setEmployeePassword(rs.getString("EMPLOYEE_PASSWORD"));
 				emp.setEmployeeEmail(rs.getString("EMPLOYEE_EMAIL"));
+				emp.setEmployeeManager(rs.getString("EMPLOYEE_MANAGER"));
 				emp.setEmployeeManagerId(rs.getInt("EMPLOYEE_MANAGER_ID"));
 			}
 		} catch (SQLException e) {

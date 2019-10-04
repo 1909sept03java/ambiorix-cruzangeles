@@ -54,6 +54,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("employeeUsername", emp.getEmployeeUsername());
 			session.setAttribute("employeePassword", emp.getEmployeePassword());
 			session.setAttribute("employeeEmail", emp.getEmployeeEmail());
+			session.setAttribute("employeeManager", emp.getEmployeeManager());
 			session.setAttribute("employeeManagerId", emp.getEmployeeManagerId());
 			resp.sendRedirect("profile");
 		} else {

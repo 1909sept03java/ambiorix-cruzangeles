@@ -31,8 +31,9 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 				double reimbursementBalance = rs.getDouble("REIMBURSEMENT_BALANCE");
 				String reimbursementStatus = rs.getString("REIMBURSEMENT_STATUS"); // P = pending, D = deny, A = allow
 				int employeeId = rs.getInt("EMPLOYEE_ID");
-				reimList.add(
-						new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId, -1));
+				int employeeManagerId = rs.getInt("EMPLOYEE_MANAGER_ID");
+				reimList.add(new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId,
+						employeeManagerId));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -60,8 +61,9 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 				int reimbursementId = rs.getInt("REIMBURSEMENT_ID");
 				double reimbursementBalance = rs.getDouble("REIMBURSEMENT_BALANCE");
 				String reimbursementStatus = rs.getString("REIMBURSEMENT_STATUS"); // P = pending, D = deny, A = allow
-				reimList.add(
-						new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId, -1));
+				int employeeManagerId = rs.getInt("EMPLOYEE_MANAGER_ID");
+				reimList.add(new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId,
+						employeeManagerId));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -72,12 +74,13 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 	}
 
 	@Override
-	public void createReimbursements(double reimbursementBalance, int employeeId) {
+	public void createReimbursements(double reimbursementBalance, int employeeId, int employeeManagerId) {
 		try (Connection con = ConnectionService.getConnection()) {
-			String sql = "INSERT INTO REIMBURSEMENTS(REIMBURSEMENT_ID, REIMBURSEMENT_BALANCE, REIMBURSEMENT_STATUS, EMPLOYEE_ID) VALUES(REIMBURSEMENTS_SEQUENCE.NEXTVAL, ?, 'P', ?)";
+			String sql = "INSERT INTO REIMBURSEMENTS(REIMBURSEMENT_ID, REIMBURSEMENT_BALANCE, REIMBURSEMENT_STATUS, EMPLOYEE_ID, EMPLOYEE_MANAGER_ID) VALUES(REIMBURSEMENTS_SEQUENCE.NEXTVAL, ?, 'P', ?, ?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setDouble(1, reimbursementBalance);
 			ps.setInt(2, employeeId);
+			ps.setInt(3, employeeManagerId);
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -113,8 +116,9 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 				double reimbursementBalance = rs.getDouble("REIMBURSEMENT_BALANCE");
 				String reimbursementStatus = rs.getString("REIMBURSEMENT_STATUS"); // P = pending, D = deny, A = allow
 				int employeeId = rs.getInt("EMPLOYEE_ID");
-				reimList.add(
-						new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId, -1));
+				int employeeManagerId = rs.getInt("EMPLOYEE_MANAGER_ID");
+				reimList.add(new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId,
+						employeeManagerId));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -138,6 +142,30 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 				String reimbursementStatus = rs.getString("REIMBURSEMENT_STATUS"); // P = pending, D = deny, A = allow
 				int employeeId = rs.getInt("EMPLOYEE_ID");
 				int employeeManagerId = rs.getInt("EMPLOYEE_MANAGER_ID");
+				reimList.add(new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId,
+						employeeManagerId));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return reimList;
+	}
+
+	@Override
+	public List<Reimbursements> getReimbursementsByEmployeeMangerId(int employeeManagerId) {
+		List<Reimbursements> reimList = new ArrayList<Reimbursements>();
+		try (Connection con = ConnectionService.getConnection()) {
+			String sql = "SELECT * FROM REIMBURSEMENTS WHERE EMPLOYEE_MANAGER_ID = ?";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, employeeManagerId);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int reimbursementId = rs.getInt("REIMBURSEMENT_ID");
+				double reimbursementBalance = rs.getDouble("REIMBURSEMENT_BALANCE");
+				String reimbursementStatus = rs.getString("REIMBURSEMENT_STATUS"); // P = pending, D = deny, A = allow
+				int employeeId = rs.getInt("EMPLOYEE_ID");
 				reimList.add(new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId,
 						employeeManagerId));
 			}

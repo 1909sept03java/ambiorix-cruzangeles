@@ -5,51 +5,63 @@ import java.util.List;
 import com.revature.beans.Employees;
 import com.revature.beans.Reimbursements;
 import com.revature.daos.EmployeesDAO;
+import com.revature.daos.EmployeesDAOImpl;
 import com.revature.daos.ReimbursementsDAO;
+import com.revature.daos.ReimbursementsDAOImpl;
 
 public class DAOService {
 
-	private static EmployeesDAO emp;
-
-	private static ReimbursementsDAO reim;
-
-	private static List<Employees> getEmployees() {
+	public static List<Employees> getEmployees() {
+		EmployeesDAO emp = new EmployeesDAOImpl();
 		return emp.getEmployees();
 	}
 
-	private static Employees getEmployeesById(int employeeId) {
+	public static Employees getEmployeesById(int employeeId) {
+		EmployeesDAO emp = new EmployeesDAOImpl();
 		return emp.getEmployeesById(employeeId);
 	}
 
-	private static boolean updateEmployees(int employeeId, String username, String password) {
+	public static boolean updateEmployees(int employeeId, String username, String password) {
+		EmployeesDAO emp = new EmployeesDAOImpl();
 		emp.updateEmployees(employeeId, username, password);
 		return true;
 	}
 
-	private static List<Reimbursements> getReimbursements() {
+	public static List<Reimbursements> getReimbursements() {
+		ReimbursementsDAO reim = new ReimbursementsDAOImpl();
 		return reim.getReimbursements();
 	}
 
-	private static List<Reimbursements> getReimbursementsByEmployeeId(int employeeId) {
+	public static List<Reimbursements> getReimbursementsByEmployeeId(int employeeId) {
+		ReimbursementsDAO reim = new ReimbursementsDAOImpl();
 		return reim.getReimbursementsByEmployeeId(employeeId);
 	}
 
-	private boolean createReimbursements(double reimbursementBalance, int employeeId) {
-		reim.createReimbursements(reimbursementBalance, employeeId);
+	public static boolean createReimbursements(double reimbursementBalance, int employeeId, int employeeManagerId) {
+		ReimbursementsDAO reim = new ReimbursementsDAOImpl();
+		reim.createReimbursements(reimbursementBalance, employeeId, employeeManagerId);
 		return true;
 	}
 
-	private boolean updateReimbursements(int reimbursementId, String reimbursementStatus) {
+	public static boolean updateReimbursements(int reimbursementId, String reimbursementStatus) {
+		ReimbursementsDAO reim = new ReimbursementsDAOImpl();
 		reim.updateReimbursements(reimbursementId, reimbursementStatus);
 		return true;
 	}
 
-	private List<Reimbursements> getAllPending() {
+	public static List<Reimbursements> getAllPending() {
+		ReimbursementsDAO reim = new ReimbursementsDAOImpl();
 		return reim.getAllPending();
 	}
 
-	private List<Reimbursements> getAllResolved() {
+	public static List<Reimbursements> getAllResolved() {
+		ReimbursementsDAO reim = new ReimbursementsDAOImpl();
 		return reim.getAllResolved();
+	}
+
+	public static List<Reimbursements> getReimbursementsByEmployeeManagerId(int employeeManagerId) {
+		ReimbursementsDAO reim = new ReimbursementsDAOImpl();
+		return reim.getReimbursementsByEmployeeMangerId(employeeManagerId);
 	}
 
 }

@@ -18,14 +18,14 @@ public class ErrorHandlerServlet extends HttpServlet {
 		Class<?> exceptionType = (Class<?>) request.getAttribute("javax.servlet.error.exception_type");
 		String message = (String) request.getAttribute("javax.servlet.error.message");
 		String requestUri = (String) request.getAttribute("javax.servlet.error.request_uri");
-		String exception = (String) request.getAttribute("javax.servlet.error.exception");
+		// String exception = (String) request.getAttribute("javax.servlet.error.exception");
 		String servletName = (String) request.getAttribute("javax.servlet.error.servlet_name");
 		// displaying it to the console
 		System.out.println("StatusCode: " + statusCode);
 		System.out.println("ExceptionType: " + exceptionType);
 		System.out.println("Message: " + message);
 		System.out.println("RequestUri: " + requestUri);
-		System.out.println("Exception: " + exception);
+		// System.out.println("Exception: " + exception);
 		System.out.println("ServletName: " + servletName);
 		// redirecting them to the error page
 		request.getRequestDispatcher("Error.html").forward(request, response);
