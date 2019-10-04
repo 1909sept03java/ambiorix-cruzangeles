@@ -2,35 +2,60 @@ package com.revature.beans;
 
 public class Reimbursements {
 
-	/*
-	 * a direct mirror of the Reimbursements table in the database
-	 */
-	
 	int reimbursementId;
 	double reimbursementBalance;
 	String reimbursementStatus; // P = pending, D = deny, A = allow
-	int employeeId;
-	
-	public Reimbursements() {
-		super();
+	int employeeId; // the employee that made the reimbursement
+	int employeeManagerId; // the manager that changed the status
+
+	// getters and setters
+	public int getReimbursementId() {
+		return reimbursementId;
 	}
-	public Reimbursements(int reimbursementId, double reimbursementBalance, String reimbursementStatus, int employeeId) {
-		super();
+
+	public void setReimbursementId(int reimbursementId) {
 		this.reimbursementId = reimbursementId;
+	}
+
+	public double getReimbursementBalance() {
+		return reimbursementBalance;
+	}
+
+	public void setReimbursementBalance(double reimbursementBalance) {
 		this.reimbursementBalance = reimbursementBalance;
+	}
+
+	public String getReimbursementStatus() {
+		return reimbursementStatus;
+	}
+
+	public void setReimbursementStatus(String reimbursementStatus) {
 		this.reimbursementStatus = reimbursementStatus;
+	}
+
+	public int getEmployeeId() {
+		return employeeId;
+	}
+
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
-	@Override
-	public String toString() {
-		return "Reimbursements [reimbursementId=" + reimbursementId + ", reimbursementBalance=" + reimbursementBalance
-				+ ", reimbursementStatus=" + reimbursementStatus + ", employeeId=" + employeeId + "]";
+
+	public int getEmployeeManagerId() {
+		return employeeManagerId;
 	}
+
+	public void setEmployeeManagerId(int employeeManagerId) {
+		this.employeeManagerId = employeeManagerId;
+	}
+
+	// hashcode and equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + employeeId;
+		result = prime * result + employeeManagerId;
 		long temp;
 		temp = Double.doubleToLongBits(reimbursementBalance);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -38,6 +63,7 @@ public class Reimbursements {
 		result = prime * result + ((reimbursementStatus == null) ? 0 : reimbursementStatus.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -48,6 +74,8 @@ public class Reimbursements {
 			return false;
 		Reimbursements other = (Reimbursements) obj;
 		if (employeeId != other.employeeId)
+			return false;
+		if (employeeManagerId != other.employeeManagerId)
 			return false;
 		if (Double.doubleToLongBits(reimbursementBalance) != Double.doubleToLongBits(other.reimbursementBalance))
 			return false;
@@ -60,29 +88,28 @@ public class Reimbursements {
 			return false;
 		return true;
 	}
-	public int getReimbursementId() {
-		return reimbursementId;
+
+	// toString
+	@Override
+	public String toString() {
+		return "Reimbursements [reimbursementId=" + reimbursementId + ", reimbursementBalance=" + reimbursementBalance
+				+ ", reimbursementStatus=" + reimbursementStatus + ", employeeId=" + employeeId + ", employeeManagerId="
+				+ employeeManagerId + "]";
 	}
-	public void setReimbursementId(int reimbursementId) {
+
+	// constructors
+	public Reimbursements(int reimbursementId, double reimbursementBalance, String reimbursementStatus, int employeeId,
+			int employeeManagerId) {
+		super();
 		this.reimbursementId = reimbursementId;
-	}
-	public double getReimbursementBalance() {
-		return reimbursementBalance;
-	}
-	public void setReimbursementBalance(double reimbursementBalance) {
 		this.reimbursementBalance = reimbursementBalance;
-	}
-	public String getReimbursementStatus() {
-		return reimbursementStatus;
-	}
-	public void setReimbursementStatus(String reimbursementStatus) {
 		this.reimbursementStatus = reimbursementStatus;
-	}
-	public int getEmployeeId() {
-		return employeeId;
-	}
-	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
+		this.employeeManagerId = employeeManagerId;
 	}
-	
+
+	public Reimbursements() {
+		super();
+	}
+
 }

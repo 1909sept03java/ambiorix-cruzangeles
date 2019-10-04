@@ -1,35 +1,55 @@
 package com.revature.beans;
 
 public class Employees {
-	
-	/*
-	 * a direct mirror of the Employees table in the database
-	 */
-	
+
 	int employeeId;
 	String employeeUsername;
 	String employeePassword;
 	String employeeEmail;
 	int employeeManagerId;
-	
-	public Employees() {
-		super();
+
+	// getters and setters
+	public int getEmployeeId() {
+		return employeeId;
 	}
-	public Employees(int employeeId, String employeeUsername, String employeePassword, String employeeEmail,
-			int employeeManagerId) {
-		super();
+
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
+	}
+
+	public String getEmployeeUsername() {
+		return employeeUsername;
+	}
+
+	public void setEmployeeUsername(String employeeUsername) {
 		this.employeeUsername = employeeUsername;
+	}
+
+	public String getEmployeePassword() {
+		return employeePassword;
+	}
+
+	public void setEmployeePassword(String employeePassword) {
 		this.employeePassword = employeePassword;
+	}
+
+	public String getEmployeeEmail() {
+		return employeeEmail;
+	}
+
+	public void setEmployeeEmail(String employeeEmail) {
 		this.employeeEmail = employeeEmail;
+	}
+
+	public int getEmployeeManagerId() {
+		return employeeManagerId;
+	}
+
+	public void setEmployeeManagerId(int employeeManagerId) {
 		this.employeeManagerId = employeeManagerId;
 	}
-	@Override
-	public String toString() {
-		return "Employees [employeeId=" + employeeId + ", employeeUsername=" + employeeUsername + ", employeePassword="
-				+ employeePassword + ", employeeEmail=" + employeeEmail + ", employeeManagerId=" + employeeManagerId
-				+ "]";
-	}
+
+	// hashcode and equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -41,6 +61,7 @@ public class Employees {
 		result = prime * result + ((employeeUsername == null) ? 0 : employeeUsername.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -71,35 +92,28 @@ public class Employees {
 			return false;
 		return true;
 	}
-	public int getEmployeeId() {
-		return employeeId;
+
+	// toString
+	@Override
+	public String toString() {
+		return "Employees [employeeId=" + employeeId + ", employeeUsername=" + employeeUsername + ", employeePassword="
+				+ employeePassword + ", employeeEmail=" + employeeEmail + ", employeeManagerId=" + employeeManagerId
+				+ "]";
 	}
-	public void setEmployeeId(int employeeId) {
+
+	// constructors
+	public Employees(int employeeId, String employeeUsername, String employeePassword, String employeeEmail,
+			int employeeManagerId) {
+		super();
 		this.employeeId = employeeId;
-	}
-	public String getEmployeeUsername() {
-		return employeeUsername;
-	}
-	public void setEmployeeUsername(String employeeUsername) {
 		this.employeeUsername = employeeUsername;
-	}
-	public String getEmployeePassword() {
-		return employeePassword;
-	}
-	public void setEmployeePassword(String employeePassword) {
 		this.employeePassword = employeePassword;
-	}
-	public String getEmployeeEmail() {
-		return employeeEmail;
-	}
-	public void setEmployeeEmail(String employeeEmail) {
 		this.employeeEmail = employeeEmail;
-	}
-	public int getEmployeeManagerId() {
-		return employeeManagerId;
-	}
-	public void setEmployeeManagerId(int employeeManagerId) {
 		this.employeeManagerId = employeeManagerId;
+	}
+
+	public Employees() {
+		super();
 	}
 
 }

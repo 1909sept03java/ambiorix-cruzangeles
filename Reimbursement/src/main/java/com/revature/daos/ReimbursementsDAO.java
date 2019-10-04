@@ -6,16 +6,22 @@ import com.revature.beans.Reimbursements;
 
 public interface ReimbursementsDAO {
 
-	/*
-	 * a "contract" with useful functions for the Reimbursements
-	 */
-	
+	// function used to get all reimbursements
 	public List<Reimbursements> getReimbursements();
+
+	// function used to get all reimbursements of a specific employee by id
 	public List<Reimbursements> getReimbursementsByEmployeeId(int employeeId);
+
+	// function used to create reimbursements for a specific employee by id
 	public void createReimbursements(double reimbursementBalance, int employeeId);
+
+	// function used to D = deny or A = approve a reimbursement
 	public void updateReimbursements(int reimbursementId, String reimbursementStatus);
-	public void deleteReimbursements();
+
+	// function used to get all pending reimbursements
 	public List<Reimbursements> getAllPending();
+
+	// function used to get all resolved reimbursements
 	public List<Reimbursements> getAllResolved();
-	
+
 }

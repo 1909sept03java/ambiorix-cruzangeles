@@ -2,22 +2,10 @@ package com.revature.beans;
 
 public class Credentials {
 
-	// this class is used simply to store the users username and password
-	// used very quickly in the login page
-	
-	public Credentials() {
-		super();
-	}
-
-	public Credentials(String username, String password) {
-		super();
-		this.username = username;
-		this.password = password;
-	}
-
 	private String username;
 	private String password;
 
+	// getters and setters
 	public String getUsername() {
 		return username;
 	}
@@ -34,6 +22,7 @@ public class Credentials {
 		this.password = password;
 	}
 
+	// hashcode and equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -65,9 +54,21 @@ public class Credentials {
 		return true;
 	}
 
+	// toString
 	@Override
 	public String toString() {
 		return "Credentials [username=" + username + ", password=" + password + "]";
+	}
+
+	// constructors
+	public Credentials(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
+	public Credentials() {
+		super();
 	}
 
 }

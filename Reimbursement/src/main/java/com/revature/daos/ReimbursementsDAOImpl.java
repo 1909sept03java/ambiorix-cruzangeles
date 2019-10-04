@@ -22,7 +22,7 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 		 */
 
 		List<Reimbursements> reimList = new ArrayList<Reimbursements>();
-		try (Connection con = ConnectionService.getConnection();) {
+		try (Connection con = ConnectionService.getConnection()) {
 			String sql = "SELECT * FROM REIMBURSEMENTS";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -32,16 +32,13 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 				String reimbursementStatus = rs.getString("REIMBURSEMENT_STATUS"); // P = pending, D = deny, A = allow
 				int employeeId = rs.getInt("EMPLOYEE_ID");
 				reimList.add(
-						new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId));
+						new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId, -1));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return reimList;
 	}
 
@@ -54,7 +51,7 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 		 */
 
 		List<Reimbursements> reimList = new ArrayList<Reimbursements>();
-		try (Connection con = ConnectionService.getConnection();) {
+		try (Connection con = ConnectionService.getConnection()) {
 			String sql = "SELECT * FROM REIMBURSEMENTS WHERE EMPLOYEE_ID = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, employeeId);
@@ -64,59 +61,44 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 				double reimbursementBalance = rs.getDouble("REIMBURSEMENT_BALANCE");
 				String reimbursementStatus = rs.getString("REIMBURSEMENT_STATUS"); // P = pending, D = deny, A = allow
 				reimList.add(
-						new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId));
+						new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId, -1));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		return reimList;
 	}
 
 	@Override
 	public void createReimbursements(double reimbursementBalance, int employeeId) {
-
-		try (Connection con = ConnectionService.getConnection();) {
+		try (Connection con = ConnectionService.getConnection()) {
 			String sql = "INSERT INTO REIMBURSEMENTS(REIMBURSEMENT_ID, REIMBURSEMENT_BALANCE, REIMBURSEMENT_STATUS, EMPLOYEE_ID) VALUES(REIMBURSEMENTS_SEQUENCE.NEXTVAL, ?, 'P', ?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setDouble(1, reimbursementBalance);
 			ps.setInt(2, employeeId);
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void updateReimbursements(int reimbursementId, String reimbursementStatus) {
-
-		try (Connection con = ConnectionService.getConnection();) {
+		try (Connection con = ConnectionService.getConnection()) {
 			String sql = "UPDATE REIMBURSEMENTS SET REIMBURSEMENT_STATUS = ? WHERE REIMBURSEMENT_ID = ?";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, reimbursementStatus);
 			ps.setInt(2, reimbursementId);
 			ps.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
-
-	@Override
-	public void deleteReimbursements() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public List<Reimbursements> getAllPending() {
@@ -132,13 +114,11 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 				String reimbursementStatus = rs.getString("REIMBURSEMENT_STATUS"); // P = pending, D = deny, A = allow
 				int employeeId = rs.getInt("EMPLOYEE_ID");
 				reimList.add(
-						new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId));
+						new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId, -1));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return reimList;
@@ -157,14 +137,13 @@ public class ReimbursementsDAOImpl implements ReimbursementsDAO {
 				double reimbursementBalance = rs.getDouble("REIMBURSEMENT_BALANCE");
 				String reimbursementStatus = rs.getString("REIMBURSEMENT_STATUS"); // P = pending, D = deny, A = allow
 				int employeeId = rs.getInt("EMPLOYEE_ID");
-				reimList.add(
-						new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId));
+				int employeeManagerId = rs.getInt("EMPLOYEE_MANAGER_ID");
+				reimList.add(new Reimbursements(reimbursementId, reimbursementBalance, reimbursementStatus, employeeId,
+						employeeManagerId));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return reimList;
