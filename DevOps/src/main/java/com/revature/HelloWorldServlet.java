@@ -25,6 +25,5 @@ public class HelloWorldServlet extends HttpServlet{
 		// TODO Auto-generated method stub
 		super.doPost(req, resp);
 	}
-
 	
 }
