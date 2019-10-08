@@ -1,7 +1,15 @@
 package com.revature.model;
 
-public class Flashcard {
-
+public class ConstructorInjectionFlashcard {
+	
+	public ConstructorInjectionFlashcard() {
+		super();
+	}
+	public ConstructorInjectionFlashcard(Topic topic) {
+		super();
+		this.topic = topic;
+	}
+	
 	private int id;
 	private String question;
 	private String answer;
@@ -48,7 +56,7 @@ public class Flashcard {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Flashcard other = (Flashcard) obj;
+		ConstructorInjectionFlashcard other = (ConstructorInjectionFlashcard) obj;
 		if (answer == null) {
 			if (other.answer != null)
 				return false;
@@ -72,21 +80,4 @@ public class Flashcard {
 	public String toString() {
 		return "Flashcard [id=" + id + ", question=" + question + ", answer=" + answer + ", topic=" + topic + "]";
 	}
-	public Flashcard(int id, String question, String answer, Topic topic) {
-		super();
-		this.id = id;
-		this.question = question;
-		this.answer = answer;
-		this.topic = topic;
-	}
-	public Flashcard(String question, String answer, Topic topic) {
-		super();
-		this.question = question;
-		this.answer = answer;
-		this.topic = topic;
-	}
-	public Flashcard() {
-		super();
-	}
-	
 }

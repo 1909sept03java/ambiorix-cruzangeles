@@ -75,6 +75,22 @@ All of the bean definition is not neccesary
 Annotations can be used to set up the packages to be scanned
 This is called "Component Scanning"
 
+## Dependency Injection Styles
+
+injections
+setter injection
+constructor injection (can't create the object unless all dependencies are resolved)
+interface injection (not supported by spring)
+field injection (not best practice since it breaks encapsulation)
+
+is different from bean wiring
+
+ways to wire beans
+explicitly
+auto wiring (by name or type)
+
+
+
 ## General
 
 ### Design Patterns

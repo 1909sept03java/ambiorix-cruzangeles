@@ -1,7 +1,24 @@
 package com.revature.model;
 
-public class Flashcard {
-
+public class AutowiredFlashcard {
+	
+	public AutowiredFlashcard() {
+		super();
+	}
+	public AutowiredFlashcard(String question, String answer, Topic topic) {
+		super();
+		this.question = question;
+		this.answer = answer;
+		this.topic = topic;
+	}
+	public AutowiredFlashcard(int id, String question, String answer, Topic topic) {
+		super();
+		this.id = id;
+		this.question = question;
+		this.answer = answer;
+		this.topic = topic;
+	}
+	
 	private int id;
 	private String question;
 	private String answer;
@@ -27,8 +44,9 @@ public class Flashcard {
 	public Topic getTopic() {
 		return topic;
 	}
-	public void setTopic(Topic topic) {
-		this.topic = topic;
+	// name changed to match topicBean for autowiring by name
+	public void setTopicBean(Topic topicBean) {
+		this.topic = topicBean;
 	}
 	@Override
 	public int hashCode() {
@@ -48,7 +66,7 @@ public class Flashcard {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Flashcard other = (Flashcard) obj;
+		AutowiredFlashcard other = (AutowiredFlashcard) obj;
 		if (answer == null) {
 			if (other.answer != null)
 				return false;
@@ -72,21 +90,5 @@ public class Flashcard {
 	public String toString() {
 		return "Flashcard [id=" + id + ", question=" + question + ", answer=" + answer + ", topic=" + topic + "]";
 	}
-	public Flashcard(int id, String question, String answer, Topic topic) {
-		super();
-		this.id = id;
-		this.question = question;
-		this.answer = answer;
-		this.topic = topic;
-	}
-	public Flashcard(String question, String answer, Topic topic) {
-		super();
-		this.question = question;
-		this.answer = answer;
-		this.topic = topic;
-	}
-	public Flashcard() {
-		super();
-	}
-	
+
 }

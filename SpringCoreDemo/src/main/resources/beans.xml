@@ -10,10 +10,36 @@
 
 	<!-- specify a logical name for the bean that the IoC container will use 
 		to identify it -->
-	<bean name="topic" class="com.revature.model.Topic">
-		<!-- inject some primitive values (not bean wiring or dependency injection, just filling -->
-		<property name="id" value="value"></property>
+	<bean name="topicBean" class="com.revature.model.Topic">
+		<!-- inject some primitive values (not bean wiring or dependency injection, 
+			just filling -->
+		<property name="id" value="42"></property>
 		<property name="name" value="coding"></property>
 	</bean>
+
+	<!-- setting injection with explicit bean wiring -->
+	<bean name="flashcardBean" class="com.revature.model.Flashcard">
+		<property name="topic" ref="topicBean"></property>
+	</bean>
+
+	<!-- constructor injection with explicit bean wiring -->
+	<bean name="constructorInjectionFlashcard"
+		class="com.revature.model.ConstructorInjectionFlashcard">
+		<!-- must have a constructor which takes an argument which matches the 
+			data type -->
+		<constructor-arg ref="topicBean"></constructor-arg>
+	</bean>
+
+	<!-- autowiring: not specifically defining what bean is getting injected -->
+	<!-- match based on name of available beans or the type of available beans -->
+	<bean name="autowiredFlashcard"
+		class="com.revature.model.AutowiredFlashcard" autowire="byName">
+		<!-- could also set autowire="byType" and it would work similarly -->
+	</bean>
+
+	<!-- can use "stereotypes" (special annotations which can be applied to 
+		classes to register them as beans) instead of explicit bean registration 
+		in a a config file -->
+	<context:component-scan base-package="com.revature"></context:component-scan>
 
 </beans>

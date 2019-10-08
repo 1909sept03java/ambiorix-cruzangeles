@@ -2,8 +2,8 @@ package com.revature.model;
 
 public class Topic {
 	
-	int id;
-	String name;
+	private int id;
+	private String name;
 	public int getId() {
 		return id;
 	}
@@ -51,11 +51,12 @@ public class Topic {
 		this.id = id;
 		this.name = name;
 	}
+	public Topic(String name) {
+		super();
+		this.name = name;
+	}
 	public Topic() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	
-	
 
 }

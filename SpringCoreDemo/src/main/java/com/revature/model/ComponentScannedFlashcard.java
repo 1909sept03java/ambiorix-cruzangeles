@@ -1,35 +1,71 @@
 package com.revature.model;
 
-public class Flashcard {
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component // stereotype which marks class as a Spring bean, default name will be
+			// componentScannedFlashcard
+public class ComponentScannedFlashcard {
+	public ComponentScannedFlashcard() {
+		super();
+	}
+
+	public ComponentScannedFlashcard(String question, String answer, Topic topic) {
+		super();
+		this.question = question;
+		this.answer = answer;
+		this.topic = topic;
+	}
+
+	public ComponentScannedFlashcard(int id, String question, String answer, Topic topic) {
+		super();
+		this.id = id;
+		this.question = question;
+		this.answer = answer;
+		this.topic = topic;
+	}
 
 	private int id;
 	private String question;
 	private String answer;
+	
+	// this flashcard needs a Topic
+	// field injection - can place annotation on a setter or constructor as well
+	@Autowired
 	private Topic topic;
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getQuestion() {
 		return question;
 	}
+
 	public void setQuestion(String question) {
 		this.question = question;
 	}
+
 	public String getAnswer() {
 		return answer;
 	}
+
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
+
 	public Topic getTopic() {
 		return topic;
 	}
+
 	public void setTopic(Topic topic) {
 		this.topic = topic;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -40,6 +76,7 @@ public class Flashcard {
 		result = prime * result + ((topic == null) ? 0 : topic.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -48,7 +85,7 @@ public class Flashcard {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Flashcard other = (Flashcard) obj;
+		ComponentScannedFlashcard other = (ComponentScannedFlashcard) obj;
 		if (answer == null) {
 			if (other.answer != null)
 				return false;
@@ -68,25 +105,9 @@ public class Flashcard {
 			return false;
 		return true;
 	}
+
 	@Override
 	public String toString() {
 		return "Flashcard [id=" + id + ", question=" + question + ", answer=" + answer + ", topic=" + topic + "]";
 	}
-	public Flashcard(int id, String question, String answer, Topic topic) {
-		super();
-		this.id = id;
-		this.question = question;
-		this.answer = answer;
-		this.topic = topic;
-	}
-	public Flashcard(String question, String answer, Topic topic) {
-		super();
-		this.question = question;
-		this.answer = answer;
-		this.topic = topic;
-	}
-	public Flashcard() {
-		super();
-	}
-	
 }
