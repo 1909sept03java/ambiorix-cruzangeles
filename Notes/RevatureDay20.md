@@ -18,6 +18,21 @@ ApplicationContext (interface in java)
 This is where the application creates and stores all of the dependencies (Spring Beans)
 Spring Beans are just Java objects whose lifecycle is managed by Spring
 
+## Spring Modules
+
+They support different features of an enterprise Java application
+1) Spring Core
+2) Spring Beans
+The above modules provide the basic features
+3) Spring Context
+This is where we get the ApplicationContext interface that will take over the beans
+Number 3 also includes the Core and the Beans themselves
+4) Spring MVC (Model View Controller)
+This is where Spring handles the servlets for you
+This is also the presentation layer (AKA Servlets)
+5) Spring AOP (Aspect Oriented Programming)
+Allows for the injection of code into the application
+if this method gets called, check this condition, etc
 
 ## General
 
