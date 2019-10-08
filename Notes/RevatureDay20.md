@@ -2,7 +2,7 @@
 
 ## Spring
 
-Created in 2002 by PNOTAL
+Created in 2002 by PIVOTAL
 It is a dependency injection framework
 Dependency injection is a way to achieve inversion of control (IOC see below)
 Dependency just means a resource that will be used
@@ -30,9 +30,50 @@ Number 3 also includes the Core and the Beans themselves
 4) Spring MVC (Model View Controller)
 This is where Spring handles the servlets for you
 This is also the presentation layer (AKA Servlets)
-5) Spring AOP (Aspect Oriented Programming)
+5) Spring AOP (Aspect Oriented Programming) or Spring REST (Let's you skip some stuff)
 Allows for the injection of code into the application
 if this method gets called, check this condition, etc
+6) Spring ORM (Object Relational Mapping)
+This is used to write our daos and create the persistence layer
+7) Spring TEST
+8) Spring SECURITY
+9) Spring Projects
+This includes Spring Boot
+It allows you to spin up web applications very quickly
+It packages them as jars but it contains an embedded server
+that can be spun very quickly
+10) Spring DATA
+Designed to go along with Spring Boot
+It is a major abstraction of your persistence layer
+11) Spring CLOUD
+Allows you to set up distributed systems
+Works with cloud resources
+
+## Spring Configuration
+
+Application setup is very important
+1) There is a spring configuration file (usually called beans.xml, doesn't have to be beans.xml just be consistent)
+2) JAVA Based configuration where you have a class that is annotated with @Configuration
+
+Example-
+
+@Configuration
+Public Class Whatever { // code here }
+
+End Example-
+
+In this case you can do both a beans.xml and use annotations
+What goes inside the beans.xml or annotations?
+Bean Definitions or Bean Recipes
+What objects should be treated as beans
+What objects do we want spring to manage for us
+How they are related (bean wiring or AUTO wiring)
+Can be explicit with bean wiring
+
+It is not neccesary to define everything within the config files
+All of the bean definition is not neccesary
+Annotations can be used to set up the packages to be scanned
+This is called "Component Scanning"
 
 ## General
 
