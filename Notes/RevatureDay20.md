@@ -89,7 +89,93 @@ ways to wire beans
 explicitly
 auto wiring (by name or type)
 
+## Bean Scopes
 
+Singleton-
+one instance per ApplicationContext
+default scope of a spring bean
+
+Prototype-
+new instance is created every time bean is requested from the IoC container
+
+Other Scopes-
+(On web applications)
+
+Request- 1 per HttpRequest
+Session- 1 per HttpSession
+GlobalSession- for Portlets
+Application - 1 per ServletContext of DispatcherServlet
+Websocket
+
+## ApplicationContext vs BeanFactory
+
+ApplicationContext- (Interface)
+newer, comes with spring-context
+superset of beanfactory
+eagerly instanciates our singleton scoped beans
+more time to start application, but faster to access beans during applications lifetime
+ClassPathXmlApplicationContext (used this morninig)
+FileSystemXmlApplicationContext
+XmlWebApplicationContext (for web-aware projects)
+
+BeanFactory-
+older, original element of framework
+Sophisticated Implementation of factory which lazily instantiates beans based on
+provided bean recipes
+
+POJO (Java Classes) --------------------------------> | IoC Container      | ----> Fully Functional Application
+CONFIGURATION (METADATA, xml or annotations) -------> | APPLICATIONCONTEXT |
+
+## Stereotype
+
+Annotation which can be applied to a class to register it as a spring bean
+@Component      // general, this is a bean <contex:component_scan base-package="beanHere"></>
+@Repository     // put these on daos
+@Service        // services obviously
+@Controller     // specific urls and http method endpoints
+@RestController //
+
+## Spring Bean Life Cycle
+
+Request Bean from Application Context (ac.getbean or app startup)
+        |
+Instantiation
+        |
+Populate Properties
+        |
+BeanNameAware
+.setBeanName()
+        |
+BeanFactoryAware
+.setBeanFactory
+        |
+Pre-Initialization
+BeanPostProcessors
+        |
+InitializingBean
+.afterPropertySession()
+        |
+Custom Init Methods
+        |
+Post-Initialization
+BeanpostProcessors
+        |
+Bean is ready
+
+Container Shuts Down
+        |
+DisposableBean
+.destroy()
+        |
+Custom Destroy Methods
+        |
+Bean is dead/done
+
+#### Project 2
+
+In project folder, inside p2, create a folder with team name
+doc inside with member list, choose a capain
+start a list of user stories
 
 ## General
 
