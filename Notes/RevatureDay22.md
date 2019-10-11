@@ -18,3 +18,18 @@ b) controller returns a vie wname and potentially some model data -> server side
 d.s. will then consult with ViewResolver to find the correct view to return
 
 6) return response
+
+Spring Data:
+handles the persistence layer
+replacing our dao's with subtypes of JpaRepository or CrudRepository
+Spring is going to write the implementation for us
+
+need to make a com.revature.repository
+interfaces go in here
+FlashcardRepository extends JpaRepository<Flashcard, Integer>
+
+// other choices for the repo can extend crudRepository (super type of JpaRepository)
+@Repository stereotype
+
+in service don't autowire DAO, autowire Repository
+findAll()

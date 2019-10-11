@@ -29,3 +29,6 @@ devtools -> include dependency so that wherever source changes app redeploys
 
 start.spring.io
 Spring Boot Initializer
+
+@SpringBootApplication
+contains @Configuration, @EnableAutoConfiguration, @ComponentScan
