@@ -32,3 +32,32 @@ Spring Boot Initializer
 
 @SpringBootApplication
 contains @Configuration, @EnableAutoConfiguration, @ComponentScan
+
+## Web Service
+
+Standard means of interperation between software applications over the internet
+
+REST (Representational State Transfer) ->
+Architectural style of web service
+Stateless -> Service does not track activity between requests ( no session )
+Statefull -> Service does keep track of activity between requests ( sessions with tokens )
+Request-Response Messaging Pattern
+Client (consuming RESTFul web service) sends requests
+Service (Exposing RESTFul web service) sends responses
+HTTP/HTTPS Only
+You are not restricted to a format for exchanging data (JSON, xml, text, html, etc)
+The client and service should agree on what they send as requests and responses
+
+Exposing RESTFul web services
+Servlets
+Spring MVC (or Spring REST is a special case)
+
+Consuming RESTFul web services
+From Java: RestTemplate
+Browser Search Bar
+Ajax and Fetch (JavaScript)
+HttpClient (Angular)
+HTML Forms
+
+Handle Errors?
+-> Simple message accompanying HTTP status codes
