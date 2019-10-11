@@ -85,3 +85,19 @@ by exection thrown
 
 Module for constructing web aware spring applications
 goal: accept http requests and return responses as either views or data or static resources
+
+using servlets but abstracted
+front controller pattern
+
+DispatcherServlet gets its own applicationContext (XmlWebApplicationContext)
+
+can have multiple dispatcher servlets, all share the same root context
+
+@Controller
+public class FlashcardController {
+
+    @RequestMapping(method=RequestMethod.GET, value="/flashcard/all")
+    public ResponseEntity<List<Flashcard>> getAll() {
+        // stuff
+    }
+}
