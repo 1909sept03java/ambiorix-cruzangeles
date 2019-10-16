@@ -13,6 +13,7 @@ and be able to communicate easily
 (just like in a restful architecture)
 Request-Response messaging pattern
 Can be stateless
+B2B (business to business)
 
 ## SOAP vs REST
 
@@ -37,3 +38,20 @@ xml document
 which defines the "contract"
 -> What operations are available?
 -> How must messages be formatted to invoke those operations?
+
+## SOAP Service (exposing) and SOAP Client (consuming)
+
+top-down (contract first) // makes you really sad, can write it by hand
+vs
+bottom-up (contract last) // make the classes that does behaviour then the
+                          // wsdl is auto generator
+
+JAX-ws "Java API for xml web services"
+
+Apache CxF
+
+/~/{address}?wsdl
+
+is where the auto generated wsdl file is located
+
+could use wsdl and wsimport to create a client from wsdl first
