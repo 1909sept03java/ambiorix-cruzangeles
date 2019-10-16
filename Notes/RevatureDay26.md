@@ -50,3 +50,28 @@ Service Registry
 -> Performs service discovery by receiving "heartbeats"
 from active services
 -> we'll use Eureka from from netflix
+
+Functional Services
+-> support business requirements
+
+Infrastructure Services
+-> other features of
+    ecosystem (registry)
+    discovery, routing,
+    messaging, logging,
+    monitoring, security, etc
+
+MSA, continued
+Scaling
+-> adapting capacity of system to match traffic/computing needs
+vertical -> increasing or decreasing the size of individual instances of a service
+horizontal -> increasing or decreasing the number of instances of a service
+
+Goal: conceal MSA behind a simple, uniform api
+
+my~application.com /billing /streaming /user-profile
+
+Gateway: provides point of access in MSA
+performs filtering, auth, load balancing, distribution req's, between different instances of same service
+
+gateway talks to service registry
