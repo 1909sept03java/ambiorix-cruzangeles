@@ -75,3 +75,13 @@ Gateway: provides point of access in MSA
 performs filtering, auth, load balancing, distribution req's, between different instances of same service
 
 gateway talks to service registry
+
+flashcard service (spring boot)
+functional service
+
+discovery service (spring boot)
+service repository
+
+flashcard gate that encompasses both services
+spring boot app
+api gateway
